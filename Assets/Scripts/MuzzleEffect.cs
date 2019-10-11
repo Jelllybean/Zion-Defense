@@ -37,7 +37,7 @@ public class MuzzleEffect : MonoBehaviour
         print("Trigger is up");
         for (int i = 0; i < MuzzleParticles.Length; i++)
         {
-            //MuzzleParticles[i].Pause();
+            MuzzleParticles[i].Stop();
         }
         isFiring = false;
     }

@@ -21,4 +21,8 @@ public class DamageScript : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    private void OnParticleCollision(GameObject other)
+    {
+        HealthPoints -= 10;
+    }
 }

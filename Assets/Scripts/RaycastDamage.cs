@@ -18,7 +18,7 @@ public class RaycastDamage : MonoBehaviour
             DamageScript damageScript = hit.collider.gameObject.GetComponent<DamageScript>();
             if (damageScript != null)
             {
-                damageScript.HealthPoints -= 25;
+                //damageScript.HealthPoints -= 25;
             }
         }
     }
