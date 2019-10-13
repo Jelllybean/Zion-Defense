@@ -12,11 +12,14 @@ public class GrabObjects : MonoBehaviour
 
     private Interactable CurrentObject = null;
     public List<Interactable> ContactInteractables = new List<Interactable>();
+    private Grid gridPosition;
+    [SerializeField] private Transform OutlineObject;
 
     private void Awake()
     {
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         fixedJoint = GetComponent<FixedJoint>();
+        gridPosition = FindObjectOfType<Grid>();
     }
 
     private void Update()
@@ -33,35 +36,140 @@ public class GrabObjects : MonoBehaviour
             print(Pose.inputSource + " Trigger Up");
             Drop();
         }
+        if(CurrentObject)
+        {
+            if (CurrentObject.gameObject.CompareTag("CanPickup"))
+            {
+                OutlineObject.transform.position = gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("CanPickup"))
+        if (!other.gameObject.CompareTag("CanPickup") && !other.gameObject.CompareTag("CanRotate"))
             return;
 
         ContactInteractables.Add(other.gameObject.GetComponent<Interactable>());
     }
     private void OnTriggerExit(Collider other)
     {
-        if (!other.gameObject.CompareTag("CanPickup"))
+        if (!other.gameObject.CompareTag("CanPickup") && !other.gameObject.CompareTag("CanRotate"))
             return;
 
         ContactInteractables.Remove(other.gameObject.GetComponent<Interactable>());
     }
 
-    public void Pickup()
+    private void Pickup()
     {
+        // Get nearest
+        CurrentObject = getNearestInteractable();
+        //null check
+        if (!CurrentObject)
+            return;
 
+        if (CurrentObject)
+        {
+            if (CurrentObject.gameObject.CompareTag("CanPickup"))
+            {
+                PickupNormal(); 
+            }
+            else if (CurrentObject.gameObject.CompareTag("CanRotate"))
+            {
+                Rotate();
+            }
+        }
     }
 
-    public void Drop()
+    private void PickupNormal()
     {
+        // already held check
+        if (CurrentObject.ActiveHand)
+            CurrentObject.ActiveHand.Drop();
+        // positoning
+        CurrentObject.transform.position = transform.position;
 
+        // attach 
+        Rigidbody targetBody = CurrentObject.GetComponent<Rigidbody>();
+        fixedJoint.connectedBody = targetBody;
+
+        // set active hand
+        CurrentObject.ActiveHand = this;
+    }
+
+    private void Rotate()
+    {
+        // already held check
+        if (CurrentObject.ActiveHand)
+            CurrentObject.ActiveHand.Drop();
+
+        // attach 
+        Rigidbody targetBody = CurrentObject.GetComponent<Rigidbody>();
+        fixedJoint.connectedBody = targetBody;
+
+        // set active hand
+        CurrentObject.ActiveHand = this;
+    }
+
+    private void Drop()
+    {
+        if (CurrentObject)
+        {
+            if (CurrentObject.gameObject.CompareTag("CanPickup"))
+                DropNormal();
+            else if (CurrentObject.gameObject.CompareTag("CanRotate"))
+                DropRotate();
+        }
+    }
+
+    private void DropNormal()
+    {
+        // Null check
+        if (!CurrentObject)
+            return;
+        //Apply velocity
+        //Rigidbody targetBody = CurrentObject.GetComponent<Rigidbody>();
+        //targetBody.velocity = Pose.GetVelocity();
+        //targetBody.angularVelocity = Pose.GetAngularVelocity();
+        CurrentObject.transform.position = gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position);
+        CurrentObject.transform.rotation = Quaternion.identity;
+
+        // Detach
+        fixedJoint.connectedBody = null;
+        // Clear
+        CurrentObject.ActiveHand = null;
+        CurrentObject = null;
+    }
+    private void DropRotate()
+    {
+        // Null check
+        if (!CurrentObject)
+            return;
+
+        // Detach
+        fixedJoint.connectedBody = null;
+        // Clear
+        CurrentObject.ActiveHand = null;
+        CurrentObject = null;
     }
 
     private Interactable getNearestInteractable()
     {
-        return null;
+        Interactable nearest = null;
+        float minDistance = float.MaxValue;
+        float distance = 0f;
+
+        foreach (Interactable interactable in ContactInteractables)
+        {
+            distance = (interactable.transform.position - transform.position).sqrMagnitude;
+
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearest = interactable;
+            }
+        }
+
+        return nearest;
     }
 }

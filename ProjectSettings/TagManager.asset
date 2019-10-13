@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CanPickup
+  - CanRotate
   layers:
   - Default
   - TransparentFX

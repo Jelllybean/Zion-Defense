@@ -21,4 +21,17 @@ public class Grid : MonoBehaviour
         result += transform.position;
         return result;
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    for (float i = 0; i < 40; i += GridSize)
+    //    {
+    //        for (float x = 0; x < 40; x += GridSize)
+    //        {
+    //            var point = GetNearestPointOnGrid(new Vector3(i, 0f, x));
+    //            Gizmos.DrawSphere(point, 0.1f);
+    //        }
+    //    }
+    //}
 }
