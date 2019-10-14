@@ -7,6 +7,7 @@ public class TurretBehaviour : MonoBehaviour
     [SerializeField] private ParticleSystem[] BulletEffect;
     [SerializeField] private Transform ObjectToTurn;
     [SerializeField] private float radius;
+    public Collider[] hitCollider;
     void Start()
     {
         BulletEffect = GetComponentsInChildren<ParticleSystem>();
@@ -16,26 +17,28 @@ public class TurretBehaviour : MonoBehaviour
     void Update()
     {
         AttackRadius(transform.position, radius);
+        print(hitCollider.Length);
     }
     private void AttackRadius(Vector3 center, float radius)
     {
-        Collider[] hitCollider = Physics.OverlapSphere(center, radius);
+        hitCollider = Physics.OverlapSphere(center, radius, 1 << 10);
         int i = 0;
-        if(hitCollider[i].tag == "Enemy")
+        if (hitCollider.Length != 0)
         {
-            ObjectToTurn.LookAt(hitCollider[i].transform.position);
-            Fire();
+            if (hitCollider[i].tag == "Enemy")
+            {
+                ObjectToTurn.LookAt(hitCollider[i].transform.position);
+                Fire();
+            }
         }
         else
-        {
             StopFiring();
-        }
     }
     private void Fire()
     {
         for (int i = 0; i < BulletEffect.Length; i++)
         {
-            if(!BulletEffect[i].isPlaying)
+            if (!BulletEffect[i].isPlaying)
             {
                 BulletEffect[i].Play();
             }

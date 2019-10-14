@@ -15,6 +15,9 @@ public class GrabObjects : MonoBehaviour
     private Grid gridPosition;
     public Transform OutlineObject;
     private TotalMoney MoneyCounter;
+    [SerializeField] private GameObject TurretPrefab;
+    [SerializeField] private Transform Table;
+    [SerializeField] private Transform turretPoint;
 
     private void Awake()
     {
@@ -44,6 +47,14 @@ public class GrabObjects : MonoBehaviour
             {
                 OutlineObject.transform.position = gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position);
             }
+        }
+        if (gridPosition.gridActive)
+        {
+            OutlineObject.gameObject.SetActive(true);
+        }
+        else
+        {
+            OutlineObject.gameObject.SetActive(false);
         }
     }
 
@@ -85,6 +96,9 @@ public class GrabObjects : MonoBehaviour
         // already held check
         if (CurrentObject.ActiveHand)
             CurrentObject.ActiveHand.Drop();
+
+        if (!CurrentObject)
+            return;
         // positoning
         CurrentObject.transform.position = transform.position;
 
@@ -131,9 +145,13 @@ public class GrabObjects : MonoBehaviour
         //Rigidbody targetBody = CurrentObject.GetComponent<Rigidbody>();
         //targetBody.velocity = Pose.GetVelocity();
         //targetBody.angularVelocity = Pose.GetAngularVelocity();
-        if (gridPosition.canPlace)
+        if (gridPosition.gridActive && gridPosition.canPlace)
         {
-            CurrentObject.transform.position = gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position);
+            GameObject newTower = Instantiate(TurretPrefab, gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position), 
+                gridPosition.transform.rotation); 
+            newTower.transform.SetParent(Table.transform);
+            MoneyCounter.totalMoneyCounter -= 300;
+            CurrentObject.transform.position = turretPoint.position;
             CurrentObject.transform.rotation = Quaternion.identity;
         }
         else
@@ -144,8 +162,6 @@ public class GrabObjects : MonoBehaviour
         // Detach
         fixedJoint.connectedBody = null;
         // Clear
-        if (CurrentObject.GetComponent<TurretBehaviour>())
-            MoneyCounter.totalMoneyCounter -= 300;
         CurrentObject.ActiveHand = null;
         CurrentObject = null;
     }
