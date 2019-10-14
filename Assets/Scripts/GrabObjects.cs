@@ -8,18 +8,20 @@ public class GrabObjects : MonoBehaviour
     public SteamVR_Action_Boolean GrabAction = null;
 
     private SteamVR_Behaviour_Pose Pose = null;
-    private FixedJoint fixedJoint = null;
+    public FixedJoint fixedJoint = null;
 
-    private Interactable CurrentObject = null;
+    public Interactable CurrentObject = null;
     public List<Interactable> ContactInteractables = new List<Interactable>();
     private Grid gridPosition;
-    [SerializeField] private Transform OutlineObject;
+    public Transform OutlineObject;
+    private TotalMoney MoneyCounter;
 
     private void Awake()
     {
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         fixedJoint = GetComponent<FixedJoint>();
         gridPosition = FindObjectOfType<Grid>();
+        MoneyCounter = FindObjectOfType<TotalMoney>();
     }
 
     private void Update()
@@ -36,7 +38,7 @@ public class GrabObjects : MonoBehaviour
             print(Pose.inputSource + " Trigger Up");
             Drop();
         }
-        if(CurrentObject)
+        if (CurrentObject)
         {
             if (CurrentObject.gameObject.CompareTag("CanPickup"))
             {
@@ -67,17 +69,14 @@ public class GrabObjects : MonoBehaviour
         //null check
         if (!CurrentObject)
             return;
-
-        if (CurrentObject)
+        OutlineObject.gameObject.SetActive(true);
+        if (CurrentObject.gameObject.CompareTag("CanPickup"))
         {
-            if (CurrentObject.gameObject.CompareTag("CanPickup"))
-            {
-                PickupNormal(); 
-            }
-            else if (CurrentObject.gameObject.CompareTag("CanRotate"))
-            {
-                Rotate();
-            }
+            PickupNormal();
+        }
+        else if (CurrentObject.gameObject.CompareTag("CanRotate"))
+        {
+            Rotate();
         }
     }
 
@@ -115,6 +114,7 @@ public class GrabObjects : MonoBehaviour
     {
         if (CurrentObject)
         {
+            OutlineObject.gameObject.SetActive(false);
             if (CurrentObject.gameObject.CompareTag("CanPickup"))
                 DropNormal();
             else if (CurrentObject.gameObject.CompareTag("CanRotate"))
@@ -131,12 +131,21 @@ public class GrabObjects : MonoBehaviour
         //Rigidbody targetBody = CurrentObject.GetComponent<Rigidbody>();
         //targetBody.velocity = Pose.GetVelocity();
         //targetBody.angularVelocity = Pose.GetAngularVelocity();
-        CurrentObject.transform.position = gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position);
-        CurrentObject.transform.rotation = Quaternion.identity;
+        if (gridPosition.canPlace)
+        {
+            CurrentObject.transform.position = gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position);
+            CurrentObject.transform.rotation = Quaternion.identity;
+        }
+        else
+        {
+            return;
+        }
 
         // Detach
         fixedJoint.connectedBody = null;
         // Clear
+        if (CurrentObject.GetComponent<TurretBehaviour>())
+            MoneyCounter.totalMoneyCounter -= 300;
         CurrentObject.ActiveHand = null;
         CurrentObject = null;
     }

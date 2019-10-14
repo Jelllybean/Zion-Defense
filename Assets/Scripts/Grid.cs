@@ -5,23 +5,47 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     [SerializeField] private float GridSize = 1f;
+    public bool canPlace = true;
+    public bool gridActive;
 
     public float Size { get { return Size; } }
-    
+
     public Vector3 GetNearestPointOnGrid(Vector3 position)
     {
-        position -= transform.position;
+        // TODO verplaats deze check naar GrabObjects
+        if (gridActive)
+        {
+            position -= transform.position;
 
-        int xCount = Mathf.RoundToInt(position.x / GridSize);
-        int yCount = Mathf.RoundToInt(position.y / GridSize);
-        int zCount = Mathf.RoundToInt(position.z / GridSize);
+            int xCount = Mathf.RoundToInt(position.x / GridSize);
+            int yCount = Mathf.RoundToInt(position.y / GridSize);
+            int zCount = Mathf.RoundToInt(position.z / GridSize);
 
-        Vector3 result = new Vector3((float)xCount * GridSize, (float)yCount * GridSize, (float)zCount * GridSize);
+            Vector3 result = new Vector3((float)xCount * GridSize, 0, (float)zCount * GridSize);
 
-        result += transform.position;
-        return result;
+            result += transform.position;
+            return result;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "CanPickup" || other.gameObject.tag == "CanRotate")
+        {
+            gridActive = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "CanPickup" || other.gameObject.tag == "CanRotate")
+        {
+            gridActive = false;
+        }
+    }
     //private void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.yellow;

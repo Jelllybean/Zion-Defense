@@ -5,24 +5,25 @@ using UnityEngine;
 public class DamageScript : MonoBehaviour
 {
     public int HealthPoints = 100;
-    private Steering DeadVelocity;
-    private Rigidbody Rb;
-    [SerializeField] private GameObject DeadBoidPrefab;
+    private TotalMoney MoneyCounter;
+    //[SerializeField] private GameObject DeadBoidPrefab;
 
     private void Start()
     {
-        DeadVelocity = GetComponent<Steering>();
+        MoneyCounter = FindObjectOfType<TotalMoney>();
     }
+
     void Update()
     {
-        if(HealthPoints <= 0)
+        if (HealthPoints <= 0)
         {
-            Instantiate(DeadBoidPrefab, transform.position, transform.rotation).GetComponent<Rigidbody>();
+            //Instantiate(DeadBoidPrefab, transform.position, transform.rotation).GetComponent<Rigidbody>();
             gameObject.SetActive(false);
+            MoneyCounter.totalMoneyCounter += 150;
         }
     }
     private void OnParticleCollision(GameObject other)
     {
-        HealthPoints -= 10;
+        HealthPoints -= 5;
     }
 }

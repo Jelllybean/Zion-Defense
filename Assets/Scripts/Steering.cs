@@ -196,7 +196,7 @@ public class Steering : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, Path[currentPath].transform.position);
         Vector3 targetPos = Path[currentPath].transform.position;
-        if (distance <= 1)
+        if (distance <= 0.1f)
         {
             if (!returnPath)
             {
