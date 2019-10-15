@@ -147,12 +147,15 @@ public class GrabObjects : MonoBehaviour
         //targetBody.angularVelocity = Pose.GetAngularVelocity();
         if (gridPosition.gridActive && gridPosition.canPlace)
         {
-            GameObject newTower = Instantiate(TurretPrefab, gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position), 
-                gridPosition.transform.rotation); 
-            newTower.transform.SetParent(Table.transform);
-            MoneyCounter.totalMoneyCounter -= 300;
-            CurrentObject.transform.position = turretPoint.position;
-            CurrentObject.transform.rotation = Quaternion.identity;
+            if (MoneyCounter.totalMoneyCounter >= 300)
+            {
+                GameObject newTower = Instantiate(TurretPrefab, gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position),
+                    gridPosition.transform.rotation);
+                newTower.transform.SetParent(Table.transform);
+                MoneyCounter.totalMoneyCounter -= 300;
+                CurrentObject.transform.position = turretPoint.position;
+                CurrentObject.transform.rotation = Quaternion.identity;
+            }
         }
         else
         {

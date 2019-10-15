@@ -6,20 +6,22 @@ public class DamageScript : MonoBehaviour
 {
     public int HealthPoints = 100;
     private TotalMoney MoneyCounter;
-    //[SerializeField] private GameObject DeadBoidPrefab;
 
     private void Start()
     {
         MoneyCounter = FindObjectOfType<TotalMoney>();
     }
 
+    private void OnEnable()
+    {
+        HealthPoints = 100;
+    }
     void Update()
     {
         if (HealthPoints <= 0)
         {
-            //Instantiate(DeadBoidPrefab, transform.position, transform.rotation).GetComponent<Rigidbody>();
             gameObject.SetActive(false);
-            MoneyCounter.totalMoneyCounter += 150;
+            MoneyCounter.totalMoneyCounter += 15;
         }
     }
     private void OnParticleCollision(GameObject other)

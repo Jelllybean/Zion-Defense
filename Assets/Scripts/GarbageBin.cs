@@ -9,13 +9,11 @@ public class GarbageBin : MonoBehaviour
     {
         if (other.gameObject.tag == "CanPickup" || other.gameObject.tag == "CanRotate")
         {
-            print("1");
             other.gameObject.transform.position = turretPoint.position;
             other.gameObject.transform.rotation = Quaternion.identity;
         }
         if (other.gameObject.tag == "GameController")
         {
-            print("2");
             GrabObjects grab = other.gameObject.GetComponent<GrabObjects>();
             grab.fixedJoint.connectedBody = null;
             grab.OutlineObject.gameObject.SetActive(false);

@@ -8,6 +8,7 @@ TagManager:
   - CanRotate
   - Path
   - Enemy
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - ObjectCollision
   - DestroyableObject
   - NewBoid
-  - 
+  - Button
   - 
   - 
   - 

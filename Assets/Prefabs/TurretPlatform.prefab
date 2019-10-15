@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2550641022556038658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.27066624, z: 0}
-  m_LocalScale: {x: 0.62376666, y: 0.62376666, z: 0.62376666}
+  m_LocalScale: {x: 0.7869453, y: 0.7869453, z: 0.7869453}
   m_Children:
   - {fileID: 2550641022889371674}
   m_Father: {fileID: 2550641023624352501}
@@ -756,6 +756,7 @@ MonoBehaviour:
   BulletEffect: []
   ObjectToTurn: {fileID: 2550641023187716002}
   radius: 0.5
+  hitCollider: []
 --- !u!1 &2550641024024504017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,16 +1070,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2550641024024504016}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 31e2116dd2d3f1f4c898bd20a3b484d6,
-        type: 3}
-      propertyPath: m_Name
-      value: Muzzle
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 31e2116dd2d3f1f4c898bd20a3b484d6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 31e2116dd2d3f1f4c898bd20a3b484d6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1148,6 +1139,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 8.1886635
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 31e2116dd2d3f1f4c898bd20a3b484d6,
+        type: 3}
+      propertyPath: m_Name
+      value: Muzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 31e2116dd2d3f1f4c898bd20a3b484d6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3815348637671979988, guid: 31e2116dd2d3f1f4c898bd20a3b484d6,
         type: 3}
@@ -1279,11 +1280,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2550641024024504016}
     m_Modifications:
-    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
-        type: 3}
-      propertyPath: m_Name
-      value: Bullets
-      objectReference: {fileID: 0}
     - target: {fileID: 8775082999279184582, guid: 073e5e65799fed640a6d0a4b803e8621,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1354,6 +1350,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0882748
       objectReference: {fileID: 0}
+    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
+        type: 3}
+      propertyPath: m_Name
+      value: Bullets
+      objectReference: {fileID: 0}
     - target: {fileID: 8775082999279184583, guid: 073e5e65799fed640a6d0a4b803e8621,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -1378,6 +1379,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775082999279184583, guid: 073e5e65799fed640a6d0a4b803e8621,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8775082998729663839, guid: 073e5e65799fed640a6d0a4b803e8621,
         type: 3}
