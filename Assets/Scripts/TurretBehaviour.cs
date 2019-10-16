@@ -17,7 +17,6 @@ public class TurretBehaviour : MonoBehaviour
     void Update()
     {
         AttackRadius(transform.position, radius);
-        print(hitCollider.Length);
     }
     private void AttackRadius(Vector3 center, float radius)
     {
