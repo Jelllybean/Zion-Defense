@@ -12,8 +12,6 @@ public class RoundSystem : MonoBehaviour
     [SerializeField] private int CurrentRound = -1;
     [SerializeField] private Transform SpawnPoint;
     [SerializeField] private Transform Table;
-    [SerializeField] private DamageScript[] damageScript = new DamageScript[200];
-    private float HealthMultiplier = 1.2f;
     private bool canProgress = true;
 
     void Start()
@@ -23,7 +21,6 @@ public class RoundSystem : MonoBehaviour
         for (int i = 0; i < Enemys.Length; i++)
         {
             Enemys[i] = Instantiate(EnemyPrefab, Vector3.zero, Quaternion.identity);
-            damageScript[i] = Enemys[i].GetComponent<DamageScript>();
             Enemys[i].transform.SetParent(Table);
             Enemys[i].SetActive(false);
         }
@@ -31,24 +28,24 @@ public class RoundSystem : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    for (int i = 0; i < Enemys.Length; i++)
-        //    {
-        //        if (Enemys[i].activeSelf)
-        //        {
-        //            canProgress = false;
-        //            break;
-        //        }
-        //        else
-        //            canProgress = true;
-        //    }
-        //    if (canProgress)
-        //    {
-        //        StartCoroutine(NextRound());
-        //        CurrentRound++;
-        //    }
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            for (int i = 0; i < Enemys.Length; i++)
+            {
+                if (Enemys[i].activeSelf)
+                {
+                    canProgress = false;
+                    break;
+                }
+                else
+                    canProgress = true;
+            }
+            if (canProgress)
+            {
+                CurrentRound++;
+                StartCoroutine(NextRound());
+            }
+        }
     }
 
     public void CheckNextRound()
@@ -66,11 +63,6 @@ public class RoundSystem : MonoBehaviour
         if (canProgress)
         {
             CurrentRound++;
-            for (int i = 0; i < damageScript.Length; i++)
-            {
-                HealthMultiplier *= damageScript[i].HealthPoints;
-            }
-            //HealthMultiplier *= Health;
             StartCoroutine(NextRound());
         }
     }
