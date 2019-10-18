@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageScript : MonoBehaviour
 {
     public float HealthPoints = 100;
-    private float lastHealth = 100;
+    private float lastHealth = 91;
     private TotalMoney MoneyCounter;
     private RoundSystem roundSystem;
 

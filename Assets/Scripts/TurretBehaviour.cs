@@ -21,13 +21,15 @@ public class TurretBehaviour : MonoBehaviour
     private void AttackRadius(Vector3 center, float radius)
     {
         hitCollider = Physics.OverlapSphere(center, radius, 1 << 10);
-        int i = 0;
         if (hitCollider.Length != 0)
         {
-            if (hitCollider[i].tag == "Enemy")
+            for (int i = 0; i < hitCollider.Length; i++)
             {
-                ObjectToTurn.LookAt(hitCollider[i].transform.position);
-                Fire();
+                if (hitCollider[i].tag == "Enemy")
+                {
+                    ObjectToTurn.LookAt(hitCollider[i].transform.position);
+                    Fire();
+                }
             }
         }
         else

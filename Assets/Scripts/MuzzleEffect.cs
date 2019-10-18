@@ -10,8 +10,9 @@ public class MuzzleEffect : MonoBehaviour
     public SteamVR_Input_Sources handType;
 
 
-    [SerializeField] private GameObject muzzleFlash;
-    [SerializeField] private RaycastDamage rayCastDamage;
+    //[SerializeField] private GameObject muzzleFlash;
+    //[SerializeField] private RaycastDamage rayCastDamage;
+    public LookAtTemp lookAt;
     [SerializeField] private ParticleSystem[] MuzzleParticles;
     private SteamVR_TrackedObject trackedObj;
     private float rotation;
@@ -23,14 +24,22 @@ public class MuzzleEffect : MonoBehaviour
         FireTurret.AddOnStateDownListener(TriggerDown, handType);
         FireTurret.AddOnStateUpListener(TriggerUp, handType);
     }
+    public void AddStates()
+    {
+        FireTurret.AddOnStateDownListener(TriggerDown, handType);
+        FireTurret.AddOnStateUpListener(TriggerUp, handType);
+    }
     public void TriggerDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
         print("Trigger is Down");
         for (int i = 0; i < MuzzleParticles.Length; i++)
         {
-            MuzzleParticles[i].Play();
+            if (!MuzzleParticles[i].isPlaying)
+            {
+                MuzzleParticles[i].Play();
+            }
         }
-        isFiring = true;
+        //isFiring = true;
     }
     public void TriggerUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
@@ -39,19 +48,19 @@ public class MuzzleEffect : MonoBehaviour
         {
             MuzzleParticles[i].Stop();
         }
-        isFiring = false;
+        //isFiring = false;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ActivateMuzzleFlash();
-        }
-        if (isFiring)
-        {
-            ActivateMuzzleFlash();
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    ActivateMuzzleFlash();
+        //}
+        //if (isFiring)
+        //{
+        //    ActivateMuzzleFlash();
+        //}
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             rotation = -1;
@@ -68,26 +77,25 @@ public class MuzzleEffect : MonoBehaviour
     }
     private void ActivateMuzzleFlash()
     {
-        if (timer <= 0.04f)
-        {
-            muzzleFlash.SetActive(true);
-            rayCastDamage.ShootRay();
-            //muzzleFlash.transform.rotation = new Quaternion(0, Random.Range(0f, 360f), 90, 1);
-            //muzzleFlash.transform.eulerAngles = new Vector3(Random.Range(0f, 360f), muzzleFlash.transform.eulerAngles.y, muzzleFlash.transform.eulerAngles.z);
-        }
-        else if (timer > 0.1f)
-        {
-            muzzleFlash.SetActive(false);
-            Vector3 euler = muzzleFlash.transform.localEulerAngles;
-            euler.x = Random.Range(0f, 360f);
-            muzzleFlash.transform.localEulerAngles = euler;
-            muzzleFlash.transform.localEulerAngles = new Vector3(Random.Range(0f, 360f), muzzleFlash.transform.localEulerAngles.y, muzzleFlash.transform.localEulerAngles.z);
-        }
-        if (timer >= 0.1f)
-        {
-            timer = 0;
-        }
-        timer += 1f * Time.deltaTime;
+        //if (timer <= 0.04f)
+        //{
+        //    rayCastDamage.ShootRay();
+        //    //muzzleFlash.transform.rotation = new Quaternion(0, Random.Range(0f, 360f), 90, 1);
+        //    //muzzleFlash.transform.eulerAngles = new Vector3(Random.Range(0f, 360f), muzzleFlash.transform.eulerAngles.y, muzzleFlash.transform.eulerAngles.z);
+        //}
+        //else if (timer > 0.1f)
+        //{
+        //    muzzleFlash.SetActive(false);
+        //    Vector3 euler = muzzleFlash.transform.localEulerAngles;
+        //    euler.x = Random.Range(0f, 360f);
+        //    muzzleFlash.transform.localEulerAngles = euler;
+        //    muzzleFlash.transform.localEulerAngles = new Vector3(Random.Range(0f, 360f), muzzleFlash.transform.localEulerAngles.y, muzzleFlash.transform.localEulerAngles.z);
+        //}
+        //if (timer >= 0.1f)
+        //{
+        //    timer = 0;
+        //}
+        //timer += 1f * Time.deltaTime;
     }
 
     private void ActivateParticles()

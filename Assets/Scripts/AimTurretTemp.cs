@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AimTurretTemp : MonoBehaviour
 {
-    [SerializeField] private Transform sphere;
+    public Transform objectToFollow;
     private RaycastHit hit;
     void Update()
     {
@@ -12,7 +12,7 @@ public class AimTurretTemp : MonoBehaviour
         //layerMask = ~layerMask;
         Physics.Raycast(transform.position, transform.forward, out hit, 1000);
 
-        sphere.position = hit.point;
+        objectToFollow.position = hit.point;
 
         //sphere.position = hit.point;
         Debug.DrawRay(transform.position, transform.forward, Color.yellow);

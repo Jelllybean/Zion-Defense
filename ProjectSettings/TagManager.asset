@@ -9,6 +9,7 @@ TagManager:
   - Path
   - Enemy
   - Button
+  - Turret
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - DestroyableObject
   - NewBoid
   - Button
-  - 
+  - Turret
   - 
   - 
   - 

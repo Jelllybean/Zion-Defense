@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LookAtTemp : MonoBehaviour
 {
-    [SerializeField] private Transform ObjectToLookAt;
+    public Transform ObjectToLookAt;
 
     void Update()
     {
