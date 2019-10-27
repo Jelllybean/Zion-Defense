@@ -5,7 +5,7 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     [SerializeField] private float GridSize = 1f;
-    public bool canPlace = false;
+    public bool canPlace = true;
     public bool gridActive;
 
     public float Size { get { return Size; } }

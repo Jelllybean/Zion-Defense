@@ -28,6 +28,14 @@ public class DamageScript : MonoBehaviour
             MoneyCounter.totalMoneyCounter += 15;
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Bullet")
+        {
+            HealthPoints -= 25;
+            other.gameObject.SetActive(false);
+        }
+    }
     private void OnParticleCollision(GameObject other)
     {
         HealthPoints -= 5;

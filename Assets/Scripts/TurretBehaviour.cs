@@ -29,6 +29,7 @@ public class TurretBehaviour : MonoBehaviour
                 {
                     ObjectToTurn.LookAt(hitCollider[i].transform.position);
                     Fire();
+                    break;
                 }
             }
         }

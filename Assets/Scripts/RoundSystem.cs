@@ -64,6 +64,7 @@ public class RoundSystem : MonoBehaviour
         {
             CurrentRound++;
             StartCoroutine(NextRound());
+            canProgress = false;
         }
     }
     //private void OnTriggerEnter(Collider other)
@@ -91,9 +92,9 @@ public class RoundSystem : MonoBehaviour
     {
         for (int i = 0; i < EnemysToSpawn[CurrentRound]; i++)
         {
-            yield return new WaitForSeconds(1f);
             Enemys[i].SetActive(true);
             Enemys[i].transform.position = SpawnPoint.position;
+            yield return new WaitForSeconds(1f);
         }
     }
 }
