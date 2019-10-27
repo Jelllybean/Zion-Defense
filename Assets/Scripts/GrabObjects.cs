@@ -5,7 +5,8 @@ using Valve.VR;
 
 public class GrabObjects : MonoBehaviour
 {
-    public SteamVR_Action_Boolean GrabAction = null;
+    public SteamVR_Action_Boolean TriggerAction = null;
+    public SteamVR_Action_Boolean TouchPadAction = null;
 
     private SteamVR_Behaviour_Pose Pose = null;
     public FixedJoint fixedJoint = null;
@@ -30,17 +31,25 @@ public class GrabObjects : MonoBehaviour
     private void Update()
     {
         // Down
-        if (GrabAction.GetStateDown(Pose.inputSource))
+        if (TriggerAction.GetStateDown(Pose.inputSource))
         {
-            print(Pose.inputSource + " Trigger Down");
+            if (CurrentObject != null)
+            {
+                CurrentObject.Action();
+                return;
+            }
+
             Pickup();
         }
         // Up
-        if (GrabAction.GetStateUp(Pose.inputSource))
+        if (TouchPadAction.GetStateDown(Pose.inputSource))
         {
-            print(Pose.inputSource + " Trigger Up");
             Drop();
         }
+        //if (TriggerAction.GetStateUp(Pose.inputSource))
+        //{
+        //    Drop();
+        //}
         if (CurrentObject)
         {
             if (CurrentObject.gameObject.CompareTag("CanPickup"))
@@ -80,6 +89,7 @@ public class GrabObjects : MonoBehaviour
         //null check
         if (!CurrentObject)
             return;
+
         OutlineObject.gameObject.SetActive(true);
         if (CurrentObject.gameObject.CompareTag("CanPickup"))
         {
@@ -100,7 +110,8 @@ public class GrabObjects : MonoBehaviour
         if (!CurrentObject)
             return;
         // positoning
-        CurrentObject.transform.position = transform.position;
+        CurrentObject.ApplyOffset(transform);
+        //CurrentObject.transform.position = transform.position;
 
         // attach 
         Rigidbody targetBody = CurrentObject.GetComponent<Rigidbody>();
@@ -129,14 +140,16 @@ public class GrabObjects : MonoBehaviour
         if (CurrentObject)
         {
             OutlineObject.gameObject.SetActive(false);
-            if (CurrentObject.gameObject.CompareTag("CanPickup"))
+            if (CurrentObject.gameObject.CompareTag("CanPickup") && !CurrentObject.isTurret)
                 DropNormal();
+            else if (CurrentObject.gameObject.CompareTag("CanPickup") && CurrentObject.isTurret)
+                PlaceTurret();
             else if (CurrentObject.gameObject.CompareTag("CanRotate"))
                 DropRotate();
         }
     }
 
-    private void DropNormal()
+    private void PlaceTurret()
     {
         // Null check
         if (!CurrentObject)
@@ -156,12 +169,32 @@ public class GrabObjects : MonoBehaviour
                 CurrentObject.transform.position = turretPoint.position;
                 CurrentObject.transform.rotation = Quaternion.identity;
             }
+            else
+            {
+                CurrentObject.transform.position = turretPoint.position;
+                CurrentObject.transform.rotation = Quaternion.identity;
+            }
         }
         else
         {
             return;
         }
 
+        // Detach
+        fixedJoint.connectedBody = null;
+        // Clear
+        CurrentObject.ActiveHand = null;
+        CurrentObject = null;
+    }
+    private void DropNormal()
+    {
+        // Null check
+        if (!CurrentObject)
+            return;
+        //Apply velocity
+        Rigidbody targetBody = CurrentObject.GetComponent<Rigidbody>();
+        targetBody.velocity = Pose.GetVelocity();
+        targetBody.angularVelocity = Pose.GetAngularVelocity();
         // Detach
         fixedJoint.connectedBody = null;
         // Clear
