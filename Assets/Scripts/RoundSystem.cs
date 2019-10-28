@@ -5,10 +5,13 @@ using Valve.VR;
 
 public class RoundSystem : MonoBehaviour
 {
-    private GameObject[] Enemys = new GameObject[200];
+    private GameObject[] BlueEnemys = new GameObject[100];
+    private GameObject[] GreenEnemys = new GameObject[100];
     private ActivateButton activateButton;
-    [SerializeField] private GameObject EnemyPrefab;
-    [SerializeField] private int[] EnemysToSpawn = new int[10];
+    [SerializeField] private GameObject BlueEnemy;
+    [SerializeField] private GameObject GreenEnemy;
+    [SerializeField] private int[] BluesToSpawn = new int[10];
+    [SerializeField] private int[] GreensToSpawn = new int[10];
     [SerializeField] private int CurrentRound = -1;
     [SerializeField] private Transform SpawnPoint;
     [SerializeField] private Transform Table;
@@ -18,11 +21,17 @@ public class RoundSystem : MonoBehaviour
     {
         activateButton = GetComponent<ActivateButton>();
         activateButton.ButtonPressed += CheckNextRound;
-        for (int i = 0; i < Enemys.Length; i++)
+        for (int i = 0; i < BlueEnemys.Length; i++)
         {
-            Enemys[i] = Instantiate(EnemyPrefab, Vector3.zero, Quaternion.identity);
-            Enemys[i].transform.SetParent(Table);
-            Enemys[i].SetActive(false);
+            BlueEnemys[i] = Instantiate(BlueEnemy, Vector3.zero, Quaternion.identity);
+            BlueEnemys[i].transform.SetParent(Table);
+            BlueEnemys[i].SetActive(false);
+        }
+        for (int i = 0; i < GreenEnemys.Length; i++)
+        {
+            GreenEnemys[i] = Instantiate(GreenEnemy, Vector3.zero, Quaternion.identity);
+            GreenEnemys[i].transform.SetParent(Table);
+            GreenEnemys[i].SetActive(false);
         }
     }
 
@@ -30,9 +39,9 @@ public class RoundSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            for (int i = 0; i < Enemys.Length; i++)
+            for (int i = 0; i < BlueEnemys.Length; i++)
             {
-                if (Enemys[i].activeSelf)
+                if (BlueEnemys[i].activeSelf)
                 {
                     canProgress = false;
                     break;
@@ -50,9 +59,9 @@ public class RoundSystem : MonoBehaviour
 
     public void CheckNextRound()
     {
-        for (int i = 0; i < Enemys.Length; i++)
+        for (int i = 0; i < BlueEnemys.Length; i++)
         {
-            if (Enemys[i].activeSelf)
+            if (BlueEnemys[i].activeSelf)
             {
                 canProgress = false;
                 break;
@@ -90,10 +99,16 @@ public class RoundSystem : MonoBehaviour
     //}
     private IEnumerator NextRound()
     {
-        for (int i = 0; i < EnemysToSpawn[CurrentRound]; i++)
+        for (int i = 0; i < BluesToSpawn[CurrentRound]; i++)
         {
-            Enemys[i].SetActive(true);
-            Enemys[i].transform.position = SpawnPoint.position;
+            BlueEnemys[i].SetActive(true);
+            BlueEnemys[i].transform.position = SpawnPoint.position;
+            yield return new WaitForSeconds(1f);
+        }
+        for (int i = 0; i < GreensToSpawn[CurrentRound]; i++)
+        {
+            GreenEnemys[i].SetActive(true);
+            GreenEnemys[i].transform.position = SpawnPoint.position;
             yield return new WaitForSeconds(1f);
         }
     }

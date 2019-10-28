@@ -57,13 +57,16 @@ public class GrabObjects : MonoBehaviour
                 OutlineObject.transform.position = gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position);
             }
         }
-        if (gridPosition.gridActive)
+        if (CurrentObject)
         {
-            OutlineObject.gameObject.SetActive(true);
-        }
-        else
-        {
-            OutlineObject.gameObject.SetActive(false);
+            if (gridPosition.gridActive && CurrentObject.isTurret)
+            {
+                OutlineObject.gameObject.SetActive(true);
+            }
+            else
+            {
+                OutlineObject.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -191,12 +194,15 @@ public class GrabObjects : MonoBehaviour
         // Null check
         if (!CurrentObject)
             return;
+
         //Apply velocity
         Rigidbody targetBody = CurrentObject.GetComponent<Rigidbody>();
         targetBody.velocity = Pose.GetVelocity();
         targetBody.angularVelocity = Pose.GetAngularVelocity();
+
         // Detach
         fixedJoint.connectedBody = null;
+
         // Clear
         CurrentObject.ActiveHand = null;
         CurrentObject = null;

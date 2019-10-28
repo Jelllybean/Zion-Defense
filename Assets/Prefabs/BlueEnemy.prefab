@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2836893118409091977}
   - component: {fileID: 2836893118409091980}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: BlueEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 40f3718fec7beee43b1c1efb5236d791, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,7 +117,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 0.2
+  speed: 0.1
+  currentWayPoint: 0
 --- !u!114 &2836893118409091980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,4 +131,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d7976bddf2a40459697a91c9ae22d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthPoints: 100
+  HealthPoints: 250
+  lastHealth: 250
