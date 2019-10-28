@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
 
+    public TrailRenderer trail;
+
+    private void Awake()
+    {
+        trail = GetComponent<TrailRenderer>();
+    }
     private void OnEnable()
     {
+        trail.Clear();
         Invoke("hideBullet", 2.0f);
     }
 

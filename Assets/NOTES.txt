@@ -1,0 +1,4 @@
+kan geen turret plaatsen als je een wapen vasthebt
+als je turret neerzet op weg kan je hem nergens meer neerzetten
+wapens kan je oppakken in table mode
+wapens vallen van verhoging af

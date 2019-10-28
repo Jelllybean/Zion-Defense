@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootScript : Interactable
+public class ShootScript : MonoBehaviour
 {
 
     [SerializeField] private float bulletspeed = 500;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bullet_Emitter;
     private Rigidbody[] rigidBodies = new Rigidbody[20];
+    private Interactable interactable;
     private float timer;
 
     List<GameObject> bulletList;
 	void Start ()
     {
+        interactable = GetComponent<Interactable>();
+        interactable.PerformAction += Shoot;
         bulletList = new List<GameObject>();
         for(int i = 0; i < 20; i++)
         {
@@ -23,9 +26,8 @@ public class ShootScript : Interactable
             bulletList.Add(objBullet);
         }
 	}
-	public override void Action()
+	public void Shoot()
     {
-        base.Action();
         print("test");
         for (int i = 0; i < bulletList.Count; i++)
         {

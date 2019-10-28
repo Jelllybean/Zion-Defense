@@ -5,20 +5,21 @@ using UnityEngine;
 public class DamageScript : MonoBehaviour
 {
     public float HealthPoints = 100;
-    private float lastHealth = 91;
+    public float lastHealth;
     private TotalMoney MoneyCounter;
     private RoundSystem roundSystem;
 
     private void Start()
     {
+        lastHealth = HealthPoints;
         MoneyCounter = FindObjectOfType<TotalMoney>();
     }
 
     private void OnEnable()
     {
         HealthPoints = lastHealth;
-        HealthPoints = 1.1F * HealthPoints;
-        lastHealth = HealthPoints;
+        //HealthPoints = 1.1F * HealthPoints;
+        //lastHealth = HealthPoints;
     }
     void Update()
     {

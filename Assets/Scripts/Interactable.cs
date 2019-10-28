@@ -6,13 +6,14 @@ using Valve.VR;
 [RequireComponent(typeof(Rigidbody))]
 public class Interactable : MonoBehaviour
 {
+    public event System.Action PerformAction;
     [SerializeField] private Vector3 Offset = Vector3.zero;
     public bool isTurret = false;
     [HideInInspector] public GrabObjects ActiveHand = null;
 
-    public virtual void Action()
+    public void Action()
     {
-        print("Action");
+        PerformAction?.Invoke();
     }
 
     public void ApplyOffset(Transform hand)
