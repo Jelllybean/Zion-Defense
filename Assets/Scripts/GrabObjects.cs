@@ -38,7 +38,6 @@ public class GrabObjects : MonoBehaviour
                 CurrentObject.Action();
                 return;
             }
-
             Pickup();
         }
         // Up
@@ -72,14 +71,14 @@ public class GrabObjects : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("CanPickup") && !other.gameObject.CompareTag("CanRotate"))
+        if (!other.gameObject.CompareTag("CanPickup") && !other.gameObject.CompareTag("CanRotate") && !other.gameObject.CompareTag("Turret"))
             return;
 
         ContactInteractables.Add(other.gameObject.GetComponent<Interactable>());
     }
     private void OnTriggerExit(Collider other)
     {
-        if (!other.gameObject.CompareTag("CanPickup") && !other.gameObject.CompareTag("CanRotate"))
+        if (!other.gameObject.CompareTag("CanPickup") && !other.gameObject.CompareTag("CanRotate") && !other.gameObject.CompareTag("Turret"))
             return;
 
         ContactInteractables.Remove(other.gameObject.GetComponent<Interactable>());
@@ -92,6 +91,22 @@ public class GrabObjects : MonoBehaviour
         //null check
         if (!CurrentObject)
             return;
+
+        //check for upgrade menu
+        if (CurrentObject.gameObject.CompareTag("Turret"))
+        {
+            TurretBehaviour turret = CurrentObject.GetComponent<TurretBehaviour>();
+            if (turret.UpgradeMenu.activeInHierarchy)
+            {
+                turret.UpgradeMenu.SetActive(false);
+            }
+            else if (!turret.UpgradeMenu.activeInHierarchy)
+            {
+                turret.UpgradeMenu.SetActive(true);
+            }
+            DropRotate();
+            return;
+        }
 
         OutlineObject.gameObject.SetActive(true);
         if (CurrentObject.gameObject.CompareTag("CanPickup"))

@@ -5,7 +5,7 @@ using TMPro;
 
 public class LivesManager : MonoBehaviour
 {
-    public int LivesCount = 150;
+    public float LivesCount = 150;
 
     [SerializeField] private TextMeshPro LivesText;
 

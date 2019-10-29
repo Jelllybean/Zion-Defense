@@ -7,6 +7,7 @@ public class PathFollowing : MonoBehaviour
     [SerializeField] private Transform[] wayPoints;
     [SerializeField] private float speed = 0.3f;
     [SerializeField] private int currentWayPoint = 0;
+    [SerializeField] private float LivesToTake;
     private LivesManager livesManager;
 
     private void Start()
@@ -29,7 +30,7 @@ public class PathFollowing : MonoBehaviour
         if (currentWayPoint >= wayPoints.Length)
         {
             gameObject.SetActive(false);
-            livesManager.LivesCount -= 1;
+            livesManager.LivesCount -= LivesToTake;
         }
     }
 }

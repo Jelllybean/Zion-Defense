@@ -119,6 +119,7 @@ MonoBehaviour:
   - {fileID: 0}
   speed: 0.1
   currentWayPoint: 0
+  LivesToTake: 3
 --- !u!114 &4581115987591020575
 MonoBehaviour:
   m_ObjectHideFlags: 0

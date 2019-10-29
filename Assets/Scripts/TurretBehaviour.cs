@@ -6,11 +6,13 @@ public class TurretBehaviour : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] BulletEffect;
     [SerializeField] private Transform ObjectToTurn;
-    [SerializeField] private float radius;
+    public float radius = 0.5f;
+    public GameObject UpgradeMenu;
     public Collider[] hitCollider;
     void Start()
     {
         BulletEffect = GetComponentsInChildren<ParticleSystem>();
+        UpgradeMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class TurretBehaviour : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, radius);
     }
