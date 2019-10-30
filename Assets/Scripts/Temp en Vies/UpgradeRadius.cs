@@ -6,7 +6,6 @@ using Valve.VR;
 public class UpgradeRadius : MonoBehaviour
 {
     public SteamVR_Action_Boolean TriggerAction = null;
-    public Transform sphere;
     private SteamVR_Behaviour_Pose Pose = null;
 
     [SerializeField] private TurretUpgradeSystem UpgradeSystem;
@@ -18,7 +17,6 @@ public class UpgradeRadius : MonoBehaviour
             if (TriggerAction.GetStateDown(Pose.inputSource))
             {
                 UpgradeSystem.UpgradeRange();
-                sphere.localScale = sphere.localScale * 1.5f;
             }
         }
     }

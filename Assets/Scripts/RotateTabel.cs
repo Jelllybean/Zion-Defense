@@ -19,14 +19,14 @@ public class RotateTabel : MonoBehaviour
         {
             if (GrabAction.GetState(Pose.inputSource))
             {
-                RotateLeft();
+                RotateRight();
             }
         }
         if (other.gameObject.name == "TurnRight")
         {
             if (GrabAction.GetState(Pose.inputSource))
             {
-                RotateRight();
+                RotateLeft();
             }
         }
     }
