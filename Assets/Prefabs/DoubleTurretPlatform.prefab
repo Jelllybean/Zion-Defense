@@ -116,6 +116,9 @@ MonoBehaviour:
   radius: 0.5
   UpgradeMenu: {fileID: 9176862818933691109}
   hitCollider: []
+  InRangeEnemys: []
+  currentEnemy: 0
+  currentSize: 0
 --- !u!114 &2017841877615447181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,6 +1368,7 @@ GameObject:
   - component: {fileID: 1453037750442938196}
   - component: {fileID: 1134920175032889940}
   - component: {fileID: 4153183143527205979}
+  - component: {fileID: 7676218710341976932}
   m_Layer: 0
   m_Name: MoreRange
   m_TagString: Untagged
@@ -1464,6 +1468,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14999999, y: 0.14999999, z: 0}
   m_Center: {x: 0, y: -0.00000011920929, z: -0.00000047683716}
+--- !u!114 &7676218710341976932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405878942588984168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47248bf3611e234596840b07465768a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1694152943499780786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,6 +1771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7333861746832381588}
   - component: {fileID: 1175958628324375000}
+  - component: {fileID: 5723076852351488219}
   m_Layer: 0
   m_Name: DoubleBarrel
   m_TagString: Untagged
@@ -1825,6 +1842,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5723076852351488219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5385041987277112066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47248bf3611e234596840b07465768a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8779028748006263978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,21 +2320,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 231595001377675728}
     m_Modifications:
-    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
-        type: 3}
-      propertyPath: m_Name
-      value: Bullets
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 8775082999279184582, guid: 073e5e65799fed640a6d0a4b803e8621,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2375,6 +2389,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0882748
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
+        type: 3}
+      propertyPath: m_Name
+      value: Bullets
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8775082999279184583, guid: 073e5e65799fed640a6d0a4b803e8621,
         type: 3}
@@ -2911,21 +2940,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8779028748006263973}
     m_Modifications:
-    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
-        type: 3}
-      propertyPath: m_Name
-      value: Bullets
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 8775082999279184582, guid: 073e5e65799fed640a6d0a4b803e8621,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2995,6 +3009,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0882748
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
+        type: 3}
+      propertyPath: m_Name
+      value: Bullets
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775082999279184585, guid: 073e5e65799fed640a6d0a4b803e8621,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8775082999279184583, guid: 073e5e65799fed640a6d0a4b803e8621,
         type: 3}

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurretBehaviour : MonoBehaviour
@@ -12,7 +13,7 @@ public class TurretBehaviour : MonoBehaviour
     public List<GameObject> InRangeEnemys = new List<GameObject>();
     public int currentEnemy = 0;
     public int currentSize = 0;
-    public int currentSize2;
+
     void Start()
     {
         BulletEffect = GetComponentsInChildren<ParticleSystem>();
@@ -22,41 +23,45 @@ public class TurretBehaviour : MonoBehaviour
     void Update()
     {
         AttackRadius(transform.position, radius);
-        hitCollider = Physics.OverlapSphere(transform.position, radius, 1 << 10);
-        currentSize2 = currentSize - 1;
-        if (hitCollider.Length > currentSize2)
-        {
-            InRangeEnemys.Add(hitCollider[currentSize].gameObject);
-            currentSize++;
-        }
+        //while (currentSize < hitCollider.Length)
+        //{
+        //    InRangeEnemys.Add(hitCollider[currentSize].gameObject);
+        //    currentSize++;
+        //}
+        //if (hitCollider.Length > currentSize)
+        //{
+        //    InRangeEnemys.Add(hitCollider[currentSize].gameObject);
+        //    currentSize += 1;
+        //}
         //for (int i = 0; i < InRangeEnemys.Count; i++)
         //{
-        if (InRangeEnemys[0] != null)
-        {
-            if (InRangeEnemys[0].activeSelf == false)
-            {
-                InRangeEnemys.Remove(InRangeEnemys[0]);
-            }
-            float distance = Vector3.Distance(transform.position, InRangeEnemys[0].transform.position);
-            if (distance >= radius)
-            {
-                InRangeEnemys.Remove(InRangeEnemys[0]);
-            }
-        }
+        //if (InRangeEnemys[0] != null)
+        //{
+        //    if (InRangeEnemys[0].activeSelf == false)
+        //    {
+        //        InRangeEnemys.Remove(InRangeEnemys[0]);
+        //    }
+        //    //float distance = Vector3.Distance(transform.position, InRangeEnemys[0].transform.position);
+        //    //if (distance >= radius)
+        //    //{
+        //    //    InRangeEnemys.Remove(InRangeEnemys[0]);
+        //    //}
+        //}
         //}
     }
     private void AttackRadius(Vector3 center, float radius)
     {
-        if (InRangeEnemys.Count != 0)
+        hitCollider = (Physics.OverlapSphere(transform.position, radius, 1 << 10));
+        if (hitCollider.Length != 0)
         {
-            //for (int i = 0; i < hitCollider.Length; i++)
-            //{
-            if (InRangeEnemys[0].gameObject.activeSelf)
+            for (int i = 0; i < hitCollider.Length; i++)
             {
-                ObjectToTurn.LookAt(InRangeEnemys[0].transform.position);
-                Fire();
+                if (hitCollider[i].gameObject.activeSelf)
+                {
+                    ObjectToTurn.LookAt(hitCollider[i].transform.position);
+                    Fire();
+                }
             }
-            //}
         }
         else
             StopFiring();
