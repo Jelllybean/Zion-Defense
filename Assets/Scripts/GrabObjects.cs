@@ -18,6 +18,7 @@ public class GrabObjects : MonoBehaviour
     private TotalMoney MoneyCounter;
     [SerializeField] private GameObject TurretPrefab;
     [SerializeField] private Transform Table;
+    [SerializeField] private Transform RotatingPlane;
     [SerializeField] private Transform turretPoint;
 
     private void Awake()
@@ -186,6 +187,7 @@ public class GrabObjects : MonoBehaviour
                 MoneyCounter.totalMoneyCounter -= 300;
                 CurrentObject.transform.position = turretPoint.position;
                 CurrentObject.transform.rotation = Quaternion.identity;
+                CurrentObject.transform.parent = RotatingPlane;
             }
             else
             {
