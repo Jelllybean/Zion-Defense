@@ -7,6 +7,7 @@ public class TurretBehaviour : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] BulletEffect;
     [SerializeField] private Transform ObjectToTurn;
+    public PathFollowing[] pathFollow = new PathFollowing[300];
     public float radius = 0.5f;
     public GameObject UpgradeMenu;
     public Collider[] hitCollider = new Collider[0];
@@ -58,8 +59,16 @@ public class TurretBehaviour : MonoBehaviour
             {
                 if (hitCollider[i].gameObject.activeSelf)
                 {
-                    ObjectToTurn.LookAt(hitCollider[i].transform.position);
-                    Fire();
+                    for (int x = 0; x < hitCollider.Length; x++)
+                    {
+                        //get the highest waypoint
+                        pathFollow[x] = hitCollider[x].gameObject.GetComponent<PathFollowing>();
+                        int highest = Mathf.Max(pathFollow[x].currentWayPoint);
+                        int currentEnemy = x;
+                        ObjectToTurn.LookAt(hitCollider[x].transform.position);
+                        Fire();
+                    }
+
                 }
             }
         }

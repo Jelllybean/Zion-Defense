@@ -5,12 +5,14 @@ using UnityEngine;
 public class GarbageBin : MonoBehaviour
 {
     [SerializeField] private Transform turretPoint;
+    [SerializeField] private Transform plane;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "CanPickup" || other.gameObject.tag == "CanRotate")
         {
             other.gameObject.transform.position = turretPoint.position;
             other.gameObject.transform.rotation = Quaternion.identity;
+            other.gameObject.transform.SetParent(plane);
         }
         if (other.gameObject.tag == "GameController")
         {

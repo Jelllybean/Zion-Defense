@@ -8,14 +8,17 @@ public class RoundSystem : MonoBehaviour
     private GameObject[] BlueEnemys = new GameObject[100];
     private GameObject[] GreenEnemys = new GameObject[100];
     private GameObject[] FastEnemys = new GameObject[100];
+    private GameObject[] TankEnemys = new GameObject[100];
     private GetClosestEnemy ClosestEnemyScript;
     private ActivateButton activateButton;
     [SerializeField] private GameObject BlueEnemy;
     [SerializeField] private GameObject GreenEnemy;
     [SerializeField] private GameObject FastEnemy;
-    [SerializeField] private int[] BluesToSpawn = new int[10];
-    [SerializeField] private int[] GreensToSpawn = new int[10];
-    [SerializeField] private int[] FastsToSpawn = new int[10];
+    [SerializeField] private GameObject TankEnemy;
+    [SerializeField] private int[] BluesToSpawn = new int[11];
+    [SerializeField] private int[] GreensToSpawn = new int[11];
+    [SerializeField] private int[] FastsToSpawn = new int[11];
+    [SerializeField] private int[] TanksToSpawn = new int[11];
     [SerializeField] private int CurrentRound = -1;
     [SerializeField] private Transform SpawnPoint;
     [SerializeField] private Transform Table;
@@ -23,29 +26,36 @@ public class RoundSystem : MonoBehaviour
 
     void Start()
     {
-        ClosestEnemyScript = FindObjectOfType<GetClosestEnemy>();
+        //ClosestEnemyScript = FindObjectOfType<GetClosestEnemy>();
         activateButton = GetComponent<ActivateButton>();
         activateButton.ButtonPressed += CheckNextRound;
         for (int i = 0; i < BlueEnemys.Length; i++)
         {
             BlueEnemys[i] = Instantiate(BlueEnemy, Vector3.zero, Quaternion.identity);
             BlueEnemys[i].transform.SetParent(Table);
-            ClosestEnemyScript.AllEnemys.Add(BlueEnemys[i].GetComponent<PathFollowing>());
+            //ClosestEnemyScript.AllEnemys.Add(BlueEnemys[i].GetComponent<PathFollowing>());
             BlueEnemys[i].SetActive(false);
         }
         for (int i = 0; i < GreenEnemys.Length; i++)
         {
             GreenEnemys[i] = Instantiate(GreenEnemy, Vector3.zero, Quaternion.identity);
             GreenEnemys[i].transform.SetParent(Table);
-            ClosestEnemyScript.AllEnemys.Add(GreenEnemys[i].GetComponent<PathFollowing>());
+            //ClosestEnemyScript.AllEnemys.Add(GreenEnemys[i].GetComponent<PathFollowing>());
             GreenEnemys[i].SetActive(false);
         }
         for (int i = 0; i < FastEnemys.Length; i++)
         {
             FastEnemys[i] = Instantiate(FastEnemy, Vector3.zero, Quaternion.identity);
             FastEnemys[i].transform.SetParent(Table);
-            ClosestEnemyScript.AllEnemys.Add(FastEnemys[i].GetComponent<PathFollowing>());
+            //ClosestEnemyScript.AllEnemys.Add(FastEnemys[i].GetComponent<PathFollowing>());
             FastEnemys[i].SetActive(false);
+        }
+        for (int i = 0; i < TankEnemys.Length; i++)
+        {
+            TankEnemys[i] = Instantiate(TankEnemy, Vector3.zero, Quaternion.identity);
+            TankEnemys[i].transform.SetParent(Table);
+            //ClosestEnemyScript.AllEnemys.Add(TankEnemys[i].GetComponent<PathFollowing>());
+            TankEnemys[i].SetActive(false);
         }
     }
 
@@ -113,23 +123,41 @@ public class RoundSystem : MonoBehaviour
     //}
     private IEnumerator NextRound()
     {
-        for (int i = 0; i < BluesToSpawn[CurrentRound]; i++)
+        if (BluesToSpawn[CurrentRound] > 0)
         {
-            BlueEnemys[i].SetActive(true);
-            BlueEnemys[i].transform.position = SpawnPoint.position;
-            yield return new WaitForSeconds(1f);
+            for (int i = 0; i < BluesToSpawn[CurrentRound]; i++)
+            {
+                BlueEnemys[i].SetActive(true);
+                BlueEnemys[i].transform.position = SpawnPoint.position;
+                yield return new WaitForSeconds(1f);
+            }
         }
-        for (int i = 0; i < GreensToSpawn[CurrentRound]; i++)
+        if (GreensToSpawn[CurrentRound] > 0)
         {
-            GreenEnemys[i].SetActive(true);
-            GreenEnemys[i].transform.position = SpawnPoint.position;
-            yield return new WaitForSeconds(1f);
+            for (int i = 0; i < GreensToSpawn[CurrentRound]; i++)
+            {
+                GreenEnemys[i].SetActive(true);
+                GreenEnemys[i].transform.position = SpawnPoint.position;
+                yield return new WaitForSeconds(1f);
+            }
         }
-        for (int i = 0; i < FastsToSpawn[CurrentRound]; i++)
+        if (FastsToSpawn[CurrentRound] > 0)
         {
-            FastEnemys[i].SetActive(true);
-            FastEnemys[i].transform.position = SpawnPoint.position;
-            yield return new WaitForSeconds(1f);
+            for (int i = 0; i < FastsToSpawn[CurrentRound]; i++)
+            {
+                FastEnemys[i].SetActive(true);
+                FastEnemys[i].transform.position = SpawnPoint.position;
+                yield return new WaitForSeconds(1f);
+            }
+        }
+        if (TanksToSpawn[CurrentRound] > 0)
+        {
+            for (int i = 0; i < TanksToSpawn[CurrentRound]; i++)
+            {
+                TankEnemys[i].SetActive(true);
+                TankEnemys[i].transform.position = SpawnPoint.position;
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }
