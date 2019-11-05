@@ -14,7 +14,7 @@ public class ActivateButton : MonoBehaviour
     //}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Button")
+        if (other.gameObject.CompareTag("Button"))
         {
             ButtonPressed?.Invoke();
         }

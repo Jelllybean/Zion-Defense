@@ -8,13 +8,13 @@ public class GarbageBin : MonoBehaviour
     [SerializeField] private Transform plane;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "CanPickup" || other.gameObject.tag == "CanRotate")
+        if (other.gameObject.CompareTag("CanPickup") || other.gameObject.CompareTag("CanRotate"))
         {
             other.gameObject.transform.position = turretPoint.position;
             other.gameObject.transform.rotation = Quaternion.identity;
             other.gameObject.transform.SetParent(plane);
         }
-        if (other.gameObject.tag == "GameController")
+        if (other.gameObject.CompareTag("GameController"))
         {
             GrabObjects grab = other.gameObject.GetComponent<GrabObjects>();
             grab.fixedJoint.connectedBody = null;

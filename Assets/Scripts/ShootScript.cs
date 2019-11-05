@@ -28,7 +28,6 @@ public class ShootScript : MonoBehaviour
 	}
 	public void Shoot()
     {
-        print("test");
         for (int i = 0; i < bulletList.Count; i++)
         {
             if (!bulletList[i].activeInHierarchy)

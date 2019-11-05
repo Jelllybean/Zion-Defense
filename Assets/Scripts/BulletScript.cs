@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
 
-    public TrailRenderer trail;
+    private TrailRenderer trail;
 
     private void Awake()
     {

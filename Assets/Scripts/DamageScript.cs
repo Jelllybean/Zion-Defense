@@ -31,7 +31,7 @@ public class DamageScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Bullet")
+        if(other.gameObject.CompareTag("Bullet"))
         {
             HealthPoints -= 25;
             other.gameObject.SetActive(false);

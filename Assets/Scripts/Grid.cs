@@ -34,14 +34,14 @@ public class Grid : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "CanPickup" || other.gameObject.tag == "CanRotate")
+        if (other.gameObject.CompareTag("CanPickup") || other.gameObject.CompareTag("CanRotate"))
         {
             gridActive = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "CanPickup" || other.gameObject.tag == "CanRotate")
+        if (other.gameObject.CompareTag("CanPickup") || other.gameObject.CompareTag("CanRotate"))
         {
             gridActive = false;
         }

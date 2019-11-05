@@ -18,7 +18,7 @@ public class Interactable : MonoBehaviour
 
     public void ApplyOffset(Transform hand)
     {
-        transform.SetParent(hand);
+        transform.SetParent(hand); 
         transform.localRotation = Quaternion.identity;
         transform.localPosition = Offset;
         transform.SetParent(null);

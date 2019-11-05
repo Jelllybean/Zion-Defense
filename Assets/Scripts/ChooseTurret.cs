@@ -23,7 +23,7 @@ public class ChooseTurret : MonoBehaviour
         {
             if(hit.collider)
             {
-                if (hit.collider.tag == "Turret")
+                if (hit.collider.CompareTag("Turret"))
                 {
                     hit.collider.gameObject.GetComponent<TurretBehaviour>().enabled = false;
                     MuzzleEffect muzzle = hit.collider.gameObject.GetComponent<MuzzleEffect>();
