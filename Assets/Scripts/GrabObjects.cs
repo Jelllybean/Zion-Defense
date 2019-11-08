@@ -34,7 +34,7 @@ public class GrabObjects : MonoBehaviour
         // Down
         if (TriggerAction.GetStateDown(Pose.inputSource))
         {
-            if (CurrentObject != null)
+            if (CurrentObject)
             {
                 CurrentObject.Action();
                 return;
@@ -46,10 +46,6 @@ public class GrabObjects : MonoBehaviour
         {
             Drop();
         }
-        //if (TriggerAction.GetStateUp(Pose.inputSource))
-        //{
-        //    Drop();
-        //}
         if (CurrentObject)
         {
             if (CurrentObject.gameObject.CompareTag("CanPickup"))
