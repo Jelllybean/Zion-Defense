@@ -27,8 +27,8 @@ public class RoundSystem : MonoBehaviour
     void Start()
     {
         //ClosestEnemyScript = FindObjectOfType<GetClosestEnemy>();
-        activateButton = GetComponent<ActivateButton>();
-        activateButton.ButtonPressed += CheckNextRound;
+        //activateButton = GetComponent<ActivateButton>();
+        //activateButton.ButtonPressed += CheckNextRound;
         for (int i = 0; i < BlueEnemys.Length; i++)
         {
             BlueEnemys[i] = Instantiate(BlueEnemy, Vector3.zero, Quaternion.identity);

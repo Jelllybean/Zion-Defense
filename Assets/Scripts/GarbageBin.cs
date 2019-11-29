@@ -16,11 +16,11 @@ public class GarbageBin : MonoBehaviour
         }
         if (other.gameObject.CompareTag("GameController"))
         {
-            GrabObjects grab = other.gameObject.GetComponent<GrabObjects>();
-            grab.fixedJoint.connectedBody = null;
-            grab.OutlineObject.gameObject.SetActive(false);
-            grab.CurrentObject.ActiveHand = null;
-            grab.CurrentObject = null;
+            //GrabObjects grab = other.gameObject.GetComponent<GrabObjects>();
+            //grab.fixedJoint.connectedBody = null;
+            //grab.OutlineObject.gameObject.SetActive(false);
+            //grab.CurrentObject.ActiveHand = null;
+            //grab.CurrentObject = null;
         }
     }
 }

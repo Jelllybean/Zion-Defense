@@ -13,7 +13,7 @@ public class UpgradeRadius : MonoBehaviour
     {
         if (other.gameObject.CompareTag("GameController"))
         {
-            Pose = other.GetComponent<SteamVR_Behaviour_Pose>();
+            Pose = other.gameObject.transform.parent.GetComponent<SteamVR_Behaviour_Pose>();
             if (TriggerAction.GetStateDown(Pose.inputSource))
             {
                 UpgradeSystem.UpgradeRange();

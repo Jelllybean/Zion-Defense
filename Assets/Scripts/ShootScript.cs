@@ -9,14 +9,14 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bullet_Emitter;
     private Rigidbody[] rigidBodies = new Rigidbody[20];
-    private Interactable interactable;
+    //private Interactable interactable;
     private float timer;
 
     List<GameObject> bulletList;
 	void Start ()
     {
-        interactable = GetComponent<Interactable>();
-        interactable.PerformAction += Shoot;
+        //interactable = GetComponent<Interactable>();
+        //interactable.PerformAction += Shoot;
         bulletList = new List<GameObject>();
         for(int i = 0; i < 20; i++)
         {

@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 2550641023624352500}
   - component: {fileID: 1117999236535029027}
   - component: {fileID: 3161002738513232592}
-  - component: {fileID: 4529704956207235461}
+  - component: {fileID: 3661314457829969824}
   m_Layer: 13
   m_Name: TurretPlatform
   m_TagString: Turret
@@ -617,7 +617,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2550641023624352499}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000007, y: 1.3621371, z: 1.0000004}
@@ -1209,7 +1209,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4529704956207235461
+--- !u!114 &3661314457829969824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1218,12 +1218,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2550641023624352499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a778905bdecbf4081166418f6db178, type: 3}
+  m_Script: {fileID: 11500000, guid: d5b4888c3141c6e49841c02363a4a71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0, z: 0}
-  isTurret: 0
-  ActiveHand: {fileID: 0}
+  TriggerAction:
+    actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  Pose: {fileID: 0}
+  UpgradeMenu: {fileID: 6848211479885508069}
 --- !u!1 &2550641024024504017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,9 +1715,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0.04858995}
   m_textInfo:
     textComponent: {fileID: 9046352141156583789}
-    characterCount: 3
+    characterCount: 4
     spriteCount: 0
-    spaceCount: 0
+    spaceCount: 1
     wordCount: 1
     linkCount: 0
     lineCount: 1

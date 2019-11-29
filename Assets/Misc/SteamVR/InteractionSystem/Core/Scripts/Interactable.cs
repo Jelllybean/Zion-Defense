@@ -26,6 +26,12 @@ namespace Valve.VR.InteractionSystem
         [Tooltip("Hide the controller part of the hand on attachment and show on detach")]
         public bool hideControllerOnAttach = false;
 
+        public bool snapToGrid = false;
+
+        public bool placeNewObject = false;
+
+        public Transform newObject = null;
+
         [Tooltip("The integer in the animator to trigger on pickup. 0 for none")]
         public int handAnimationOnPickup = 0;
 

@@ -2,25 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-
-[RequireComponent(typeof(Rigidbody))]
-public class Interactable : MonoBehaviour
+namespace Valve.VR.InteractionSystem
 {
-    public event System.Action PerformAction;
-    [SerializeField] private Vector3 Offset = Vector3.zero;
-    public bool isTurret = false;
-    [HideInInspector] public GrabObjects ActiveHand = null;
 
-    public void Action()
+    [RequireComponent(typeof(Rigidbody))]
+    public class Interactable : MonoBehaviour
     {
-        PerformAction?.Invoke();
-    }
+        public event System.Action PerformAction;
+        [SerializeField] private Vector3 Offset = Vector3.zero;
+        public bool isTurret = false;
+        [HideInInspector] public GrabObjects ActiveHand = null;
 
-    public void ApplyOffset(Transform hand)
-    {
-        transform.SetParent(hand); 
-        transform.localRotation = Quaternion.identity;
-        transform.localPosition = Offset;
-        transform.SetParent(null);
+        public void Action()
+        {
+            PerformAction?.Invoke();
+        }
+
+        public void ApplyOffset(Transform hand)
+        {
+            transform.SetParent(hand);
+            transform.localRotation = Quaternion.identity;
+            transform.localPosition = Offset;
+            transform.SetParent(null);
+        }
     }
 }

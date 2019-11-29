@@ -2,41 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridPlacementCheck : MonoBehaviour
+namespace Valve.VR.InteractionSystem
 {
-    private Grid grid;
-    public Renderer Rend;
-
-    void Start()
+    public class GridPlacementCheck : MonoBehaviour
     {
-        grid = FindObjectOfType<Grid>();
-        Rend.sharedMaterial.SetColor("_OutlineColor", new Color(0, 253, 255, 255));
-    }
+        private Grid grid;
+        public Renderer Rend;
 
-    private void Update()
-    {
-        if(!grid.canPlace)
+        void Start()
         {
-            Rend.sharedMaterial.SetColor("_OutlineColor", Color.red);
-        }
-        if(grid.canPlace)
-        {
+            grid = FindObjectOfType<Grid>();
             Rend.sharedMaterial.SetColor("_OutlineColor", new Color(0, 253, 255, 255));
         }
-    }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Path")
+        private void Update()
         {
-            grid.canPlace = false;
+            if (!grid.canPlace)
+            {
+                Rend.sharedMaterial.SetColor("_OutlineColor", Color.red);
+            }
+            if (grid.canPlace)
+            {
+                Rend.sharedMaterial.SetColor("_OutlineColor", new Color(0, 253, 255, 255));
+            }
         }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Path")
+
+        private void OnTriggerStay(Collider other)
         {
-            grid.canPlace = true;
+            if (other.gameObject.tag == "Path")
+            {
+                grid.canPlace = false;
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "Path")
+            {
+                grid.canPlace = true;
+            }
         }
     }
 }

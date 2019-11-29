@@ -33,12 +33,12 @@ public class PlaceObjects : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 1000))
         {
-            PlaceObjectNear(hit.point);
+            //PlaceObjectNear(hit.point);
         }
     }
-    private void PlaceObjectNear(Vector3 nearPoint)
-    {
-        Vector3 finalPosition = grid.GetNearestPointOnGrid(nearPoint);
-        GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
-    }
+    //private void PlaceObjectNear(Vector3 nearPoint)
+    //{
+    //    //Vector3 finalPosition = grid.GetNearestPointOnGrid(nearPoint);
+    //    //GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
+    //}
 }

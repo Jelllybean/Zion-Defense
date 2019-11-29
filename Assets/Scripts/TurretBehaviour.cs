@@ -66,6 +66,7 @@ public class TurretBehaviour : MonoBehaviour
                         int highest = Mathf.Max(pathFollow[x].currentWayPoint);
                         float highestDistance = Mathf.Min(pathFollow[x].distance);
                         ObjectToTurn.LookAt(pathFollow[Mathf.FloorToInt(highestDistance)].transform.position);
+                        Fire();
                         //int currentEnemy = x;
                         //for (int y = 0; y < hitCollider.Length; y++)
                         //{
