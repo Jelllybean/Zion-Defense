@@ -561,6 +561,9 @@ namespace Valve.VR.InteractionSystem
             if (spewDebugText)
                 HandDebugLog("AttachObject " + objectToAttach);
             objectToAttach.SendMessage("OnAttachedToHand", this, SendMessageOptions.DontRequireReceiver);
+
+            if (outlineObject)
+                outlineObject.gameObject.SetActive(true);
         }
 
         public bool ObjectIsAttached(GameObject go)
@@ -612,14 +615,18 @@ namespace Valve.VR.InteractionSystem
                     if (attachedObjects[index].interactable.setRangeOfMotionOnPickup != SkeletalMotionRangeChange.None)
                         ResetTemporarySkeletonRangeOfMotion();
 
-                    if(attachedObjects != null)
-                        outlineObject.transform.position = grid.GetNearestPointOnGrid(attachedObjects[index].interactable.gameObject.transform.position);
+
                     if (attachedObjects[index].interactable.snapToGrid && grid.canPlace && attachedObjects[index].interactable.placeNewObject)
                     {
                         Instantiate(attachedObjects[index].interactable.newObject, grid.GetNearestPointOnGrid(objectToDetach.transform.position), Quaternion.identity);
                         Destroy(attachedObjects[index].interactable.gameObject);
                         //objectToDetach.transform.position = grid.GetNearestPointOnGrid(objectToDetach.transform.position);
                     }
+                    else
+                        Destroy(attachedObjects[index].interactable.gameObject);
+
+                    if (outlineObject)
+                        outlineObject.gameObject.SetActive(false);
                 }
 
                 Transform parentTransform = null;
@@ -1101,6 +1108,14 @@ namespace Valve.VR.InteractionSystem
             {
                 hoveringInteractable.SendMessage("HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver);
             }
+
+            if (currentAttachedObject != null)
+            {
+                Vector3 pos = grid.GetNearestPointOnGrid(currentAttachedObject.transform.position);
+                outlineObject.transform.position = new Vector3(pos.x, pos.y + 0.0748f, pos.z);
+
+            }
+
         }
 
         /// <summary>
