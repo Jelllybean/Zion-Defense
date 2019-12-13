@@ -6,6 +6,7 @@ public class DamageScript : MonoBehaviour
 {
     public float HealthPoints = 100;
     public float lastHealth;
+    [SerializeField] private int MoneyWorth = 10;
     private TotalMoney MoneyCounter;
     private RoundSystem roundSystem;
 
@@ -26,7 +27,7 @@ public class DamageScript : MonoBehaviour
         if (HealthPoints <= 0)
         {
             gameObject.SetActive(false);
-            MoneyCounter.totalMoneyCounter += 10;
+            MoneyCounter.totalMoneyCounter += MoneyWorth;
         }
     }
     private void OnTriggerEnter(Collider other)

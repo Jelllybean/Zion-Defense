@@ -29,14 +29,18 @@ namespace Valve.VR.InteractionSystem
 
         private void OnTriggerStay(Collider other)
         {
-            if (other.gameObject.tag == "Path")
+            if (other.CompareTag("Path"))
             {
                 grid.canPlace = false;
+            }
+            else
+            {
+                grid.canPlace = true;
             }
         }
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.tag == "Path")
+            if (other.CompareTag("Path"))
             {
                 grid.canPlace = true;
             }
