@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class TurretBehaviour : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem[] BulletEffect;
     [SerializeField] private Transform ObjectToTurn;
     public PathFollowing[] pathFollow = new PathFollowing[300];
     public float radius = 0.5f;
@@ -17,7 +16,6 @@ public class TurretBehaviour : MonoBehaviour
 
     void Start()
     {
-        BulletEffect = GetComponentsInChildren<ParticleSystem>();
         UpgradeMenu.SetActive(false);
     }
 
@@ -83,22 +81,13 @@ public class TurretBehaviour : MonoBehaviour
         else
             StopFiring();
     }
-    private void Fire()
+    public virtual void Fire()
     {
-        for (int i = 0; i < BulletEffect.Length; i++)
-        {
-            if (!BulletEffect[i].isPlaying)
-            {
-                BulletEffect[i].Play();
-            }
-        }
+
     }
-    private void StopFiring()
+    public virtual void StopFiring()
     {
-        for (int i = 0; i < BulletEffect.Length; i++)
-        {
-            BulletEffect[i].Stop();
-        }
+        
     }
 
     private void OnDrawGizmos()
