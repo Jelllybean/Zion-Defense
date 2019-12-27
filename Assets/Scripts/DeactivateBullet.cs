@@ -9,6 +9,11 @@ public class DeactivateBullet : MonoBehaviour
         Invoke("DisableBullet", 2f);
     }
 
+    private void OnDisable()
+    {
+        CancelInvoke();
+    }
+
     private void DisableBullet()
     {
         gameObject.SetActive(false);

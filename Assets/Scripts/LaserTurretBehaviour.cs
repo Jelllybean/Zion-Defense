@@ -8,10 +8,12 @@ public class LaserTurretBehaviour : TurretBehaviour
     public Transform m_BulletEmitter;
     //private GameObject[] m_LaserBlasts = new GameObject[20];
     private List<GameObject> m_LaserBlasts = new List<GameObject>(15);
+    private bool m_CanFire = true;
 
     private void Start()
     {
-        for (int i = 0; i < 25; i++)
+        Fire();
+        for (int i = 0; i < 50; i++)
         {
             GameObject laser = Instantiate(m_LaserBlast);
             m_LaserBlasts.Add(laser);
@@ -19,6 +21,8 @@ public class LaserTurretBehaviour : TurretBehaviour
             laser.transform.parent = gameObject.transform;
             laser.SetActive(false);
         }
+
+        StartCoroutine(FireLasers());
     }
 
     private void Update()
@@ -30,39 +34,52 @@ public class LaserTurretBehaviour : TurretBehaviour
                 m_LaserBlasts[i].transform.Translate(m_LaserBlasts[i].transform.forward * 0.03f);
             }
         }
+        print(m_CanFire);
         if (Input.GetKey(KeyCode.Space))
         {
-            StartCoroutine(FireLasers());
+            Fire();
         }
-        else
-        {
-            StopFiring();
-        }
+        //else
+        //{
+        //    StopFiring();
+        //}
     }
 
     public override void Fire()
     {
-        StartCoroutine(FireLasers());
+        //StartCoroutine(FireLasers());
+        m_CanFire = true;
     }
 
     public override void StopFiring()
     {
-        StopCoroutine(FireLasers());
+        //StopCoroutine(FireLasers());
+        m_CanFire = false;
     }
 
     private IEnumerator FireLasers()
     {
-        for (int i = 0; i < m_LaserBlasts.Count; i++)
+        //for (int i = 0; i < m_LaserBlasts.Count; i++)
+        //{
+        //    if (!m_LaserBlasts[i].activeInHierarchy)
+        //    {
+        //        m_LaserBlasts[i].SetActive(true);
+        //        //m_LaserBlasts[i].transform.position = m_BulletEmitter.position;
+        //        //break;
+        //    }
+        //}
+        while (m_CanFire)
         {
-            if (!m_LaserBlasts[i].activeInHierarchy)
+            for (int i = 0; i < m_LaserBlasts.Count; i++)
             {
-                m_LaserBlasts[i].SetActive(true);
-                m_LaserBlasts[i].transform.position = m_BulletEmitter.position;
+                yield return new WaitForSeconds(0.2f);
+                if (!m_LaserBlasts[i].activeInHierarchy)
+                {
+                    m_LaserBlasts[i].SetActive(true);
+                    m_LaserBlasts[i].transform.position = m_BulletEmitter.position;
+                    break;
+                }
             }
-            if (i >= m_LaserBlasts.Count)
-                i = 0;
-            yield return new WaitForSeconds(0.2f);
         }
-        yield return null;
     }
 }
