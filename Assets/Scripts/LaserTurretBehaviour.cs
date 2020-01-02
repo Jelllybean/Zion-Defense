@@ -6,13 +6,11 @@ public class LaserTurretBehaviour : TurretBehaviour
 {
     public GameObject m_LaserBlast;
     public Transform m_BulletEmitter;
-    //private GameObject[] m_LaserBlasts = new GameObject[20];
     private List<GameObject> m_LaserBlasts = new List<GameObject>(15);
-    private bool m_CanFire = true;
+    private bool m_CanFire = false;
 
     private void Start()
     {
-        Fire();
         for (int i = 0; i < 50; i++)
         {
             GameObject laser = Instantiate(m_LaserBlast);
@@ -39,10 +37,10 @@ public class LaserTurretBehaviour : TurretBehaviour
         {
             Fire();
         }
-        //else
-        //{
-        //    StopFiring();
-        //}
+        else
+        {
+            StopFiring();
+        }
     }
 
     public override void Fire()
@@ -68,18 +66,23 @@ public class LaserTurretBehaviour : TurretBehaviour
         //        //break;
         //    }
         //}
-        while (m_CanFire)
+        while (true)
         {
-            for (int i = 0; i < m_LaserBlasts.Count; i++)
+            if (m_CanFire)
             {
-                yield return new WaitForSeconds(0.2f);
-                if (!m_LaserBlasts[i].activeInHierarchy)
+                for (int i = 0; i < m_LaserBlasts.Count; i++)
                 {
-                    m_LaserBlasts[i].SetActive(true);
-                    m_LaserBlasts[i].transform.position = m_BulletEmitter.position;
-                    break;
+                    if (!m_LaserBlasts[i].activeInHierarchy)
+                    {
+                        m_LaserBlasts[i].SetActive(true);
+                        m_LaserBlasts[i].transform.position = m_BulletEmitter.position;
+                        yield return new WaitForSeconds(0.2f);
+                        break;
+                    }
                 }
             }
+            else
+                yield return null;
         }
     }
 }

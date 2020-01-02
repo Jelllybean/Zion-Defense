@@ -21,7 +21,7 @@ public class TurretUpgradeSystem : MonoBehaviour
         if (MoneyManager.totalMoneyCounter >= 250 && !rangeHasBeenUpgraded)
         {
             rangeHasBeenUpgraded = true;
-            turretBehaviour.radius = 0.75f;
+            turretBehaviour.radius = turretBehaviour.radius * 1.5f;
             sphere.localScale = sphere.localScale * 1.5f;
             MoneyManager.totalMoneyCounter -= 250;
         }
