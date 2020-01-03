@@ -13,7 +13,7 @@ public class NormalTurretBehaviour : TurretBehaviour
 
     public override void Fire()
     {
-        base.StopFiring();
+        //base.StopFiring();
         for (int i = 0; i < BulletEffect.Length; i++)
         {
             if (!BulletEffect[i].isPlaying)

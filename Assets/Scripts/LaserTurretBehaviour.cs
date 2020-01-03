@@ -19,12 +19,13 @@ public class LaserTurretBehaviour : TurretBehaviour
             laser.transform.parent = gameObject.transform;
             laser.SetActive(false);
         }
-
         StartCoroutine(FireLasers());
     }
 
     private void Update()
     {
+        AttackRadius(transform.position, radius);
+
         for (int i = 0; i < m_LaserBlasts.Count; i++)
         {
             if (m_LaserBlasts[i].activeInHierarchy)
@@ -33,14 +34,14 @@ public class LaserTurretBehaviour : TurretBehaviour
             }
         }
         print(m_CanFire);
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Fire();
-        }
-        else
-        {
-            StopFiring();
-        }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    Fire();
+        //}
+        //else
+        //{
+        //    StopFiring();
+        //}
     }
 
     public override void Fire()
@@ -84,5 +85,10 @@ public class LaserTurretBehaviour : TurretBehaviour
             else
                 yield return null;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

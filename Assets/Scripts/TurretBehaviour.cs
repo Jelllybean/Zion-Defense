@@ -48,7 +48,7 @@ public class TurretBehaviour : MonoBehaviour
         //}
         //}
     }
-    private void AttackRadius(Vector3 center, float radius)
+    public void AttackRadius(Vector3 center, float radius)
     {
         hitCollider = (Physics.OverlapSphere(transform.position, radius, 1 << 10));
         if (hitCollider.Length != 0)
@@ -90,8 +90,8 @@ public class TurretBehaviour : MonoBehaviour
         
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(transform.position, radius);
+    //}
 }

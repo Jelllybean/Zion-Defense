@@ -40,6 +40,7 @@ public class DamageScript : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
+        print(" asuhdfhsdufhdusfhsdpof");
         HealthPoints -= 5;
     }
 }
