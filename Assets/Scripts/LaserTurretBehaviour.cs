@@ -31,7 +31,7 @@ public class LaserTurretBehaviour : TurretBehaviour
         {
             if (m_LaserBlasts[i].activeInHierarchy)
             {
-                m_LaserBlasts[i].transform.Translate(m_LaserBlasts[i].transform.right * -0.03f);
+                m_LaserBlasts[i].transform.Translate(m_LaserBlasts[i].transform.forward * 0.03f, Space.World);
             }
         }
         print(m_CanFire);
