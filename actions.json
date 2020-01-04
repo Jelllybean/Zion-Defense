@@ -102,6 +102,10 @@
     {
       "name": "/actions/Shooting",
       "usage": "single"
+    },
+    {
+      "name": "/actions/FireGun",
+      "usage": "single"
     }
   ],
   "default_bindings": [

@@ -6,7 +6,7 @@ namespace Valve.VR.InteractionSystem
 {
 
     [RequireComponent(typeof(Rigidbody))]
-    public class Interactable : MonoBehaviour
+    public class Interactable2 : MonoBehaviour
     {
         public event System.Action PerformAction;
         [SerializeField] private Vector3 Offset = Vector3.zero;

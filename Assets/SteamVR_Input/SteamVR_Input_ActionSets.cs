@@ -27,6 +27,8 @@ namespace Valve.VR
         
         private static SteamVR_Input_ActionSet_Shooting p_Shooting;
         
+        private static SteamVR_Input_ActionSet_FireGun p_FireGun;
+        
         public static SteamVR_Input_ActionSet_default _default
         {
             get
@@ -67,6 +69,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Input_ActionSet_FireGun FireGun
+        {
+            get
+            {
+                return SteamVR_Actions.p_FireGun.GetCopy<SteamVR_Input_ActionSet_FireGun>();
+            }
+        }
+        
         private static void StartPreInitActionSets()
         {
             SteamVR_Actions.p__default = ((SteamVR_Input_ActionSet_default)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_default>("/actions/default")));
@@ -74,12 +84,14 @@ namespace Valve.VR
             SteamVR_Actions.p_buggy = ((SteamVR_Input_ActionSet_buggy)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_buggy>("/actions/buggy")));
             SteamVR_Actions.p_mixedreality = ((SteamVR_Input_ActionSet_mixedreality)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_mixedreality>("/actions/mixedreality")));
             SteamVR_Actions.p_Shooting = ((SteamVR_Input_ActionSet_Shooting)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_Shooting>("/actions/Shooting")));
+            SteamVR_Actions.p_FireGun = ((SteamVR_Input_ActionSet_FireGun)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_FireGun>("/actions/FireGun")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[] {
                     SteamVR_Actions._default,
                     SteamVR_Actions.platformer,
                     SteamVR_Actions.buggy,
                     SteamVR_Actions.mixedreality,
-                    SteamVR_Actions.Shooting};
+                    SteamVR_Actions.Shooting,
+                    SteamVR_Actions.FireGun};
         }
     }
 }

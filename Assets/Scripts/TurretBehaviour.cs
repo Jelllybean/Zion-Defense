@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TurretBehaviour : MonoBehaviour
 {
-    [SerializeField] private Transform ObjectToTurn;
+    public Transform ObjectToTurn;
     public PathFollowing[] pathFollow = new PathFollowing[300];
     public float radius = 0.5f;
     public GameObject UpgradeMenu;

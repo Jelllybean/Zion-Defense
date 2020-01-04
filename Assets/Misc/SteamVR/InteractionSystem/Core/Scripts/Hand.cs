@@ -622,8 +622,8 @@ namespace Valve.VR.InteractionSystem
                         Destroy(attachedObjects[index].interactable.gameObject);
                         //objectToDetach.transform.position = grid.GetNearestPointOnGrid(objectToDetach.transform.position);
                     }
-                    else
-                        Destroy(attachedObjects[index].interactable.gameObject);
+                    //else
+                    //    Destroy(attachedObjects[index].interactable.gameObject);
 
                     if (outlineObject)
                         outlineObject.gameObject.SetActive(false);
@@ -1108,12 +1108,10 @@ namespace Valve.VR.InteractionSystem
             {
                 hoveringInteractable.SendMessage("HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver);
             }
-
-            if (currentAttachedObject != null)
+            if (currentAttachedObject != null && outlineObject != null)
             {
                 Vector3 pos = grid.GetNearestPointOnGrid(currentAttachedObject.transform.position);
                 outlineObject.transform.position = new Vector3(pos.x, pos.y + 0.0748f, pos.z);
-
             }
 
         }

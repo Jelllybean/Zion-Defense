@@ -11,6 +11,9 @@ TagManager:
   - Button
   - Turret
   - Bullet
+  - projectile
+  - FxTemporaire
+  - Laser
   layers:
   - Default
   - TransparentFX

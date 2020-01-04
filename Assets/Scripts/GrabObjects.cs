@@ -13,8 +13,8 @@ namespace Valve.VR.InteractionSystem
         private SteamVR_Behaviour_Pose Pose = null;
         public FixedJoint fixedJoint = null;
 
-        public Interactable CurrentObject = null;
-        public List<Interactable> ContactInteractables = new List<Interactable>();
+        public Interactable2 CurrentObject = null;
+        public List<Interactable2> ContactInteractables = new List<Interactable2>();
         private Grid gridPosition;
         public Transform OutlineObject;
         private TotalMoney MoneyCounter;
@@ -73,14 +73,14 @@ namespace Valve.VR.InteractionSystem
             if (!other.gameObject.CompareTag("CanPickup") && !other.gameObject.CompareTag("CanRotate") && !other.gameObject.CompareTag("Turret"))
                 return;
 
-            ContactInteractables.Add(other.gameObject.GetComponent<Interactable>());
+            ContactInteractables.Add(other.gameObject.GetComponent<Interactable2>());
         }
         private void OnTriggerExit(Collider other)
         {
             if (!other.gameObject.CompareTag("CanPickup") && !other.gameObject.CompareTag("CanRotate") && !other.gameObject.CompareTag("Turret"))
                 return;
 
-            ContactInteractables.Remove(other.gameObject.GetComponent<Interactable>());
+            ContactInteractables.Remove(other.gameObject.GetComponent<Interactable2>());
         }
 
         private void Pickup()
@@ -235,13 +235,13 @@ namespace Valve.VR.InteractionSystem
             CurrentObject = null;
         }
 
-        private Interactable getNearestInteractable()
+        private Interactable2 getNearestInteractable()
         {
-            Interactable nearest = null;
+            Interactable2 nearest = null;
             float minDistance = float.MaxValue;
             float distance = 0f;
 
-            foreach (Interactable interactable in ContactInteractables)
+            foreach (Interactable2 interactable in ContactInteractables)
             {
                 distance = (interactable.transform.position - transform.position).sqrMagnitude;
 

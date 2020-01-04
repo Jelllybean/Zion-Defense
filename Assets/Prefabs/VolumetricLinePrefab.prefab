@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5183439719061117251}
   m_Layer: 0
   m_Name: VolumetricLinePrefab
-  m_TagString: Bullet
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1818a3e4572b5fc45a207607cb8c7a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_BulletEmitter: {fileID: 0}
 --- !u!65 &2767340330508973901
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,15 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class Shooting : MonoBehaviour
 {
+
+
     [SerializeField]
     private GameObject Kogel;
     [SerializeField]
     private Transform Bullet_Emitter;
     [SerializeField]
     private float Bullet_force;
+
+    private void Update()
+    {
+        
+    }
 
     //public override void Action()
     //{

@@ -37,10 +37,14 @@ public class DamageScript : MonoBehaviour
             HealthPoints -= 25;
             other.gameObject.SetActive(false);
         }
+        if(other.gameObject.CompareTag("Laser"))
+        {
+            HealthPoints -= 40;
+            other.gameObject.SetActive(false);
+        }
     }
     private void OnParticleCollision(GameObject other)
     {
-        print(" asuhdfhsdufhdusfhsdpof");
         HealthPoints -= 5;
     }
 }

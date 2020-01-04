@@ -16,7 +16,7 @@ public class LaserTurretBehaviour : TurretBehaviour
             GameObject laser = Instantiate(m_LaserBlast);
             m_LaserBlasts.Add(laser);
             laser.transform.position = m_BulletEmitter.position;
-            laser.transform.parent = gameObject.transform;
+            laser.transform.rotation = m_BulletEmitter.rotation;
             laser.SetActive(false);
         }
         StartCoroutine(FireLasers());
@@ -25,12 +25,13 @@ public class LaserTurretBehaviour : TurretBehaviour
     private void Update()
     {
         AttackRadius(transform.position, radius);
-
+        //m_BulletEmitter.localEulerAngles = ObjectToTurn.localEulerAngles;
+        //m_BulletEmitter.rotation = ObjectToTurn.rotation;
         for (int i = 0; i < m_LaserBlasts.Count; i++)
         {
             if (m_LaserBlasts[i].activeInHierarchy)
             {
-                m_LaserBlasts[i].transform.Translate(m_LaserBlasts[i].transform.forward * 0.03f);
+                m_LaserBlasts[i].transform.Translate(m_LaserBlasts[i].transform.right * -0.03f);
             }
         }
         print(m_CanFire);
@@ -76,7 +77,6 @@ public class LaserTurretBehaviour : TurretBehaviour
                     if (!m_LaserBlasts[i].activeInHierarchy)
                     {
                         m_LaserBlasts[i].SetActive(true);
-                        m_LaserBlasts[i].transform.position = m_BulletEmitter.position;
                         yield return new WaitForSeconds(0.2f);
                         break;
                     }
