@@ -9,27 +9,36 @@ public class RotateTabel : MonoBehaviour
     private SteamVR_Behaviour_Pose Pose = null;
     [SerializeField] private Transform Table;
 
+    public bool m_TurnRight = true;
+
     private void Awake()
     {
-        Pose = GetComponent<SteamVR_Behaviour_Pose>();
+
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.name == "TurnLeft")
+        if (other.gameObject.CompareTag("GameController"))
         {
-            if (GrabAction.GetState(Pose.inputSource))
+            if (!Pose)
             {
-                RotateRight();
+                Pose = other.gameObject.GetComponentInParent<SteamVR_Behaviour_Pose>();
             }
-        }
-        if (other.gameObject.name == "TurnRight")
-        {
             if (GrabAction.GetState(Pose.inputSource))
             {
-                RotateLeft();
+                if (m_TurnRight)
+                    RotateRight();
+                else
+                    RotateLeft();
             }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("GameController"))
+            Pose = null;
+    }
+
     //ja ik WEET dat deze niet kloppen laat me met rust
     public void RotateLeft()
     {

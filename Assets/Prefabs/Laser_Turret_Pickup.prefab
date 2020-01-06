@@ -69,7 +69,8 @@ MonoBehaviour:
   hideControllerOnAttach: 1
   snapToGrid: 1
   placeNewObject: 1
-  newObject: {fileID: 5084095076646202694}
+  newObject: {fileID: 1635752255661752803, guid: c4cdc90f009c94a46ade101f68b00203,
+    type: 3}
   handAnimationOnPickup: 0
   setRangeOfMotionOnPickup: -1
   useHandObjectAttachmentPoint: 1
