@@ -6,7 +6,7 @@ namespace Valve.VR.InteractionSystem
 {
     public class Grid : MonoBehaviour
     {
-        [SerializeField] private float GridSize = 1f;
+        [SerializeField] private float GridSize = 0f;
         public bool canPlace = true;
         public bool gridActive;
 
@@ -18,13 +18,13 @@ namespace Valve.VR.InteractionSystem
             if (gridActive)
             {
                 position -= transform.position;
-
+        
                 int xCount = Mathf.RoundToInt(position.x / GridSize);
                 int yCount = Mathf.RoundToInt(position.y / GridSize);
                 int zCount = Mathf.RoundToInt(position.z / GridSize);
-
+        
                 Vector3 result = new Vector3((float)xCount * GridSize, 0, (float)zCount * GridSize);
-
+        
                 result += transform.position;
                 return result;
             }
@@ -33,7 +33,6 @@ namespace Valve.VR.InteractionSystem
                 return Vector3.zero;
             }
         }
-
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("CanPickup") || other.gameObject.CompareTag("CanRotate"))

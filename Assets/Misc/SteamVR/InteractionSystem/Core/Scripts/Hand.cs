@@ -87,6 +87,7 @@ namespace Valve.VR.InteractionSystem
 
         private Grid grid;
 
+        public Transform m_Table;
         public struct AttachedObject
         {
             public GameObject attachedObject;
@@ -616,9 +617,11 @@ namespace Valve.VR.InteractionSystem
                         ResetTemporarySkeletonRangeOfMotion();
 
 
-                    if (attachedObjects[index].interactable.snapToGrid && grid.canPlace && attachedObjects[index].interactable.placeNewObject)
+                    if (attachedObjects[index].interactable.placeNewObject)
                     {
-                        Instantiate(attachedObjects[index].interactable.newObject, grid.GetNearestPointOnGrid(objectToDetach.transform.position), Quaternion.identity);
+                        Transform newObject = Instantiate(attachedObjects[index].interactable.newObject, Vector3.zero, grid.transform.rotation);
+                        newObject.SetParent(m_Table);
+                        newObject.transform.position = new Vector3(objectToDetach.transform.position.x, grid.transform.position.y, objectToDetach.transform.position.z);
                         Destroy(attachedObjects[index].interactable.gameObject);
                         //objectToDetach.transform.position = grid.GetNearestPointOnGrid(objectToDetach.transform.position);
                     }

@@ -48,7 +48,7 @@ public class TurretWheel : MonoBehaviour
                 Instantiate(m_TurretPrefabs[0], transform.position, Quaternion.identity);
                 m_TurretWheelObj.SetActive(false);
             }
-            else if (m_TrackPad.x > 0.5f && m_TrackPad.y > 0.5f)
+            else if (m_TrackPad.x > 0.5f && m_TrackPad.y > 0.5f && m_TotalMoney.totalMoneyCounter >= 500)
             {
                 m_TotalMoney.totalMoneyCounter -= 500;
                 Instantiate(m_TurretPrefabs[1], transform.position, Quaternion.identity);

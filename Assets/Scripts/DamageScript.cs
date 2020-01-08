@@ -39,7 +39,7 @@ public class DamageScript : MonoBehaviour
         }
         if(other.gameObject.CompareTag("Laser"))
         {
-            HealthPoints -= 40;
+            HealthPoints -= 20;
             other.gameObject.SetActive(false);
         }
     }

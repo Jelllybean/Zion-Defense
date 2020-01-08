@@ -14,7 +14,8 @@ public class TurnOnUpgrades : MonoBehaviour
     {
         if (other.gameObject.CompareTag("GameController"))
         {
-            Pose = other.gameObject.transform.parent.GetComponent<SteamVR_Behaviour_Pose>();
+            if (!Pose)
+                Pose = other.gameObject.transform.parent.GetComponentInParent<SteamVR_Behaviour_Pose>();
             if (TriggerAction.GetStateDown(Pose.inputSource))
             {
                 if (UpgradeMenu.activeInHierarchy)
@@ -22,6 +23,13 @@ public class TurnOnUpgrades : MonoBehaviour
                 else if (!UpgradeMenu.activeInHierarchy)
                     UpgradeMenu.SetActive(true);
             }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("GameController"))
+        {
+            Pose = null;
         }
     }
     //private void OnCollisionStay(Collision collision)

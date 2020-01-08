@@ -179,13 +179,13 @@ namespace Valve.VR.InteractionSystem
             {
                 if (MoneyCounter.totalMoneyCounter >= 300)
                 {
-                    GameObject newTower = Instantiate(TurretPrefab, gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position),
-                        gridPosition.transform.rotation);
-                    newTower.transform.SetParent(Table.transform);
-                    MoneyCounter.totalMoneyCounter -= 300;
-                    CurrentObject.transform.position = turretPoint.position;
-                    CurrentObject.transform.rotation = Quaternion.identity;
-                    CurrentObject.transform.parent = RotatingPlane;
+                    //GameObject newTower = Instantiate(TurretPrefab, gridPosition.GetNearestPointOnGrid(CurrentObject.transform.position),
+                    //    gridPosition.transform.rotation);
+                    //newTower.transform.SetParent(Table.transform);
+                    //MoneyCounter.totalMoneyCounter -= 300;
+                    //CurrentObject.transform.position = turretPoint.position;
+                    //CurrentObject.transform.rotation = Quaternion.identity;
+                    //CurrentObject.transform.parent = RotatingPlane;
                 }
                 else
                 {
