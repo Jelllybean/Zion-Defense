@@ -16,14 +16,14 @@ public class GetClosestEnemy : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < AllEnemys.Count; i++)
-        {
-            wayPointArray[i] = AllEnemys[i].currentWayPoint;
-            if(AllEnemys[i].gameObject.activeInHierarchy)
-            {
-                distanceArray[i] = AllEnemys[i].distance;
-            }
-        }
+        //for (int i = 0; i < AllEnemys.Count; i++)
+        //{
+        //    wayPointArray[i] = AllEnemys[i].currentWayPoint;
+        //    if(AllEnemys[i].gameObject.activeInHierarchy)
+        //    {
+        //        distanceArray[i] = AllEnemys[i].distance;
+        //    }
+        //}
         currentHighestWayPoint = Mathf.Max(wayPointArray);
         currentLowestDistance = Mathf.Max(distanceArray);
         //for (int i = 0; i < aaaaaah.Length; i++)

@@ -16,11 +16,11 @@ public class BulletScript : MonoBehaviour {
         Invoke("hideBullet", 2.0f);
     }
 
-    void hideBullet()
+    public virtual void hideBullet()
     {
         gameObject.SetActive(false);
     }
-    private void OnDisable()
+    public virtual void OnDisable()
     {
         CancelInvoke();
     }

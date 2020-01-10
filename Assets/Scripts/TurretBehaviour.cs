@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TurretBehaviour : MonoBehaviour
 {
-    public Transform ObjectToTurn;
+    public Transform[] ObjectToTurn;
     public PathFollowing[] pathFollow = new PathFollowing[300];
     public float radius = 0.5f;
     public GameObject UpgradeMenu;
@@ -13,6 +13,9 @@ public class TurretBehaviour : MonoBehaviour
     public List<GameObject> InRangeEnemys = new List<GameObject>();
     public int currentEnemy = 0;
     public int currentSize = 0;
+
+    private List<float> m_Distances = new List<float>();
+    private List<PathFollowing> m_PathFollow = new List<PathFollowing>();
 
     void Start()
     {
@@ -60,10 +63,25 @@ public class TurretBehaviour : MonoBehaviour
                     for (int x = 0; x < hitCollider.Length; x++)
                     {
                         //get the highest waypoint
-                        pathFollow[x] = hitCollider[x].gameObject.GetComponent<PathFollowing>();
-                        int highest = Mathf.Max(pathFollow[x].currentWayPoint);
-                        float highestDistance = Mathf.Min(pathFollow[x].distance);
-                        ObjectToTurn.LookAt(pathFollow[Mathf.FloorToInt(highestDistance)].transform.position);
+                        //pathFollow[x] = \
+                        PathFollowing _currentWayPoint = hitCollider[x].gameObject.GetComponent<PathFollowing>();
+                        //if (_currentWayPoint.currentWayPoint <= Mathf.Max(m_WayPoints.ToArray()))
+                        //{
+                            m_Distances.Add(_currentWayPoint.m_EntireDistance);
+                            m_PathFollow.Add(_currentWayPoint);
+                        //}
+                        //else if (_currentWayPoint.currentWayPoint > Mathf.Max(m_WayPoints.ToArray()))
+                        //{
+                        //    m_WayPoints.Clear();
+                        //    m_WayPoints.Add(_currentWayPoint.currentWayPoint);
+                        //    m_PathFollow.Add(_currentWayPoint);
+                        //}
+                        int _indexOf = m_Distances.IndexOf(Mathf.Min(m_Distances.ToArray()));
+                        // = m_Distances.IndexOf(Mathf.Min(m_Distances.ToArray()));
+                        //int highest = Mathf.Max(pathFollow[x].currentWayPoint);
+                        //float highestDistance = Mathf.Min(pathFollow[x].distance);
+                        for (int y = 0; i < ObjectToTurn.Length; i++)
+                            ObjectToTurn[y].LookAt(m_PathFollow[_indexOf].transform.position);
                         Fire();
                         //int currentEnemy = x;
                         //for (int y = 0; y < hitCollider.Length; y++)
@@ -87,11 +105,11 @@ public class TurretBehaviour : MonoBehaviour
     }
     public virtual void StopFiring()
     {
-        
+
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, radius);
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 }

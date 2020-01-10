@@ -62,7 +62,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c7cbb83890e5843b57790b6b8ec92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToTurn: {fileID: 2202906733567023725}
+  ObjectToTurn:
+  - {fileID: 2202906733567023725}
   pathFollow:
   - {fileID: 0}
   - {fileID: 0}
