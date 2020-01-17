@@ -9,8 +9,10 @@ public class LaserTurretBehaviour : TurretBehaviour
     private List<GameObject> m_LaserBlasts = new List<GameObject>(15);
     private bool m_CanFire = false;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
+
         for (int i = 0; i < 50; i++)
         {
             GameObject laser = Instantiate(m_LaserBlast);

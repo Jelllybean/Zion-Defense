@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeactivateBullet : MonoBehaviour
 {
-
     public Transform m_BulletEmitter;
     private void OnEnable()
     {

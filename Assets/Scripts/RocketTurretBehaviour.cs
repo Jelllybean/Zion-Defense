@@ -12,8 +12,10 @@ public class RocketTurretBehaviour : TurretBehaviour
     public List<bool> m_CanRocketFire = new List<bool>(5);
     private bool m_CanFire = false;
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
+
         for (int i = 0; i < m_RocketParticles.Count; i++)
         {
             m_RocketParticles[i].gameObject.SetActive(false);

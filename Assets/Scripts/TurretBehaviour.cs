@@ -14,17 +14,22 @@ public class TurretBehaviour : MonoBehaviour
     public int currentEnemy = 0;
     public int currentSize = 0;
 
-    private List<float> m_Distances = new List<float>();
-    private List<PathFollowing> m_PathFollow = new List<PathFollowing>();
+    public List<float> m_Distances = new List<float>();
+    public List<PathFollowing> m_PathFollow = new List<PathFollowing>();
 
-    void Start()
+    private EnemyManager m_EnemyManager;
+
+    public virtual void Start()
     {
+        m_EnemyManager = FindObjectOfType<EnemyManager>();
+        //m_Distances = new List<float>(m_EnemyManager.m_EnemyDistance);
         UpgradeMenu.SetActive(false);
     }
 
     void Update()
     {
         AttackRadius(transform.position, radius);
+
         //while (currentSize < hitCollider.Length)
         //{
         //    InRangeEnemys.Add(hitCollider[currentSize].gameObject);
@@ -53,6 +58,35 @@ public class TurretBehaviour : MonoBehaviour
     }
     public void AttackRadius(Vector3 center, float radius)
     {
+        //for (int i = 0; i < m_EnemyManager.m_EnemyDistance.Count; i++)
+        //{
+        //    float distance = Vector3.Distance(center, m_EnemyManager.m_EnemyPathFollowing[i].transform.position);
+        //    if (distance <= radius && !m_PathFollow.Contains(m_EnemyManager.m_EnemyPathFollowing[i]))
+        //    {
+        //        m_PathFollow.Add(m_EnemyManager.m_EnemyPathFollowing[i]);
+        //        m_Distances[i] = m_EnemyManager.m_EnemyDistance[i];
+        //    }
+        //    else if (distance > radius && m_PathFollow.Contains(m_EnemyManager.m_EnemyPathFollowing[i]))
+        //    {
+        //        m_PathFollow.Remove(m_EnemyManager.m_EnemyPathFollowing[i]);
+        //        m_Distances[i] = m_EnemyManager.m_EnemyDistance[i];
+        //    }
+        //}
+        //
+        //foreach (float enemy in m_Distances)
+        //{
+        //
+        //}
+        //
+        //if (m_PathFollow.Count != 0)
+        //{
+        //    int _indexOf = m_Distances.IndexOf(m_Distances.Min());
+        //    for (int y = 0; y < ObjectToTurn.Length; y++)
+        //        ObjectToTurn[y].LookAt(m_PathFollow[_indexOf].transform.position);
+        //    Fire();
+        //}
+        //else
+        //    StopFiring();
         hitCollider = (Physics.OverlapSphere(transform.position, radius, 1 << 10));
         if (hitCollider.Length != 0)
         {
@@ -67,8 +101,21 @@ public class TurretBehaviour : MonoBehaviour
                         PathFollowing _currentWayPoint = hitCollider[x].gameObject.GetComponent<PathFollowing>();
                         //if (_currentWayPoint.currentWayPoint <= Mathf.Max(m_WayPoints.ToArray()))
                         //{
+                        if (!m_Distances.Contains(_currentWayPoint.m_EntireDistance) && !m_PathFollow.Contains(_currentWayPoint))
+                        {
                             m_Distances.Add(_currentWayPoint.m_EntireDistance);
                             m_PathFollow.Add(_currentWayPoint);
+                        }
+
+                        for (int s = 0; s < m_PathFollow.Count; s++)
+                        {
+                            float distance = Vector3.Distance(center, _currentWayPoint.transform.position);
+                            if (!_currentWayPoint.gameObject.activeInHierarchy || distance > radius)
+                            {
+                                m_Distances.Remove(_currentWayPoint.m_EntireDistance);
+                                m_PathFollow.Remove(_currentWayPoint);
+                            }
+                        }
                         //}
                         //else if (_currentWayPoint.currentWayPoint > Mathf.Max(m_WayPoints.ToArray()))
                         //{
@@ -76,11 +123,11 @@ public class TurretBehaviour : MonoBehaviour
                         //    m_WayPoints.Add(_currentWayPoint.currentWayPoint);
                         //    m_PathFollow.Add(_currentWayPoint);
                         //}
-                        int _indexOf = m_Distances.IndexOf(Mathf.Min(m_Distances.ToArray()));
+                        int _indexOf = m_Distances.IndexOf(m_Distances.Min());
                         // = m_Distances.IndexOf(Mathf.Min(m_Distances.ToArray()));
                         //int highest = Mathf.Max(pathFollow[x].currentWayPoint);
                         //float highestDistance = Mathf.Min(pathFollow[x].distance);
-                        for (int y = 0; i < ObjectToTurn.Length; i++)
+                        for (int y = 0; y < ObjectToTurn.Length; y++)
                             ObjectToTurn[y].LookAt(m_PathFollow[_indexOf].transform.position);
                         Fire();
                         //int currentEnemy = x;

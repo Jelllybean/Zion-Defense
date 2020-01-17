@@ -6,8 +6,9 @@ public class NormalTurretBehaviour : TurretBehaviour
 {
     [SerializeField] private ParticleSystem[] BulletEffect;
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
         BulletEffect = GetComponentsInChildren<ParticleSystem>();
     }
 

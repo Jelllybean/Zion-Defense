@@ -24,37 +24,40 @@ public class RoundSystem : MonoBehaviour
     [SerializeField] private Transform Table;
     private bool canProgress = true;
 
+    //private EnemyManager m_EnemyManager;
+
     void Start()
     {
         //ClosestEnemyScript = FindObjectOfType<GetClosestEnemy>();
         //activateButton = GetComponent<ActivateButton>();
         //activateButton.ButtonPressed += CheckNextRound;
+        //m_EnemyManager = FindObjectOfType<EnemyManager>();
         for (int i = 0; i < BlueEnemys.Length; i++)
         {
             BlueEnemys[i] = Instantiate(BlueEnemy, Vector3.zero, Quaternion.identity);
             BlueEnemys[i].transform.SetParent(Table);
-            //ClosestEnemyScript.AllEnemys.Add(BlueEnemys[i].GetComponent<PathFollowing>());
+            //m_EnemyManager.m_EnemyPathFollowing.Add(BlueEnemys[i].GetComponent<PathFollowing>());
             BlueEnemys[i].SetActive(false);
         }
         for (int i = 0; i < GreenEnemys.Length; i++)
         {
             GreenEnemys[i] = Instantiate(GreenEnemy, Vector3.zero, Quaternion.identity);
             GreenEnemys[i].transform.SetParent(Table);
-            //ClosestEnemyScript.AllEnemys.Add(GreenEnemys[i].GetComponent<PathFollowing>());
+            //m_EnemyManager.m_EnemyPathFollowing.Add(GreenEnemys[i].GetComponent<PathFollowing>());
             GreenEnemys[i].SetActive(false);
         }
         for (int i = 0; i < FastEnemys.Length; i++)
         {
             FastEnemys[i] = Instantiate(FastEnemy, Vector3.zero, Quaternion.identity);
             FastEnemys[i].transform.SetParent(Table);
-            //ClosestEnemyScript.AllEnemys.Add(FastEnemys[i].GetComponent<PathFollowing>());
+            //m_EnemyManager.m_EnemyPathFollowing.Add(FastEnemys[i].GetComponent<PathFollowing>());
             FastEnemys[i].SetActive(false);
         }
         for (int i = 0; i < TankEnemys.Length; i++)
         {
             TankEnemys[i] = Instantiate(TankEnemy, Vector3.zero, Quaternion.identity);
             TankEnemys[i].transform.SetParent(Table);
-            //ClosestEnemyScript.AllEnemys.Add(TankEnemys[i].GetComponent<PathFollowing>());
+            //m_EnemyManager.m_EnemyPathFollowing.Add(TankEnemys[i].GetComponent<PathFollowing>());
             TankEnemys[i].SetActive(false);
         }
     }
