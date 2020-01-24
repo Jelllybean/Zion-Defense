@@ -29,7 +29,7 @@ public class RocketTurretBehaviour : TurretBehaviour
         StartCoroutine(FireRockets());
     }
 
-    private void Update()
+    void Update()
     {
         AttackRadius(transform.position, radius);
 
@@ -38,9 +38,9 @@ public class RocketTurretBehaviour : TurretBehaviour
             if (m_CanRocketFire[i])
             {
                 m_Rockets[i].transform.Translate(m_Rockets[i].transform.forward * 0.03f, Space.World);
-                m_Rockets[i].transform.GetChild(0).gameObject.SetActive(true);;
-                m_Rockets[i].transform.GetChild(1).gameObject.SetActive(true);;
-                m_Rockets[i].transform.GetChild(2).gameObject.SetActive(true); ;
+                m_Rockets[i].transform.GetChild(0).gameObject.SetActive(true);
+                m_Rockets[i].transform.GetChild(1).gameObject.SetActive(true);
+                m_Rockets[i].transform.GetChild(2).gameObject.SetActive(true); 
             }
             else
             {
@@ -73,7 +73,7 @@ public class RocketTurretBehaviour : TurretBehaviour
                     {
                         m_CanRocketFire[i] = true;
                         m_DisableRocket[i].DisableRocket();
-                        yield return new WaitForSeconds(0.4f);
+                        yield return new WaitForSeconds(1f);
                         break;
                     }
                 }

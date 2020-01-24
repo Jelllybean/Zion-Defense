@@ -42,6 +42,11 @@ public class DamageScript : MonoBehaviour
             HealthPoints -= 20;
             other.gameObject.SetActive(false);
         }
+        //if(other.gameObject.CompareTag("Rocket"))
+        //{
+        //    HealthPoints -= 100;
+        //    other.gameObject.SetActive(false);
+        //}
     }
     private void OnParticleCollision(GameObject other)
     {

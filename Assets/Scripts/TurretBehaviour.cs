@@ -14,6 +14,8 @@ public class TurretBehaviour : MonoBehaviour
     public int currentEnemy = 0;
     public int currentSize = 0;
 
+    private GameObject m__currentObject;
+
     private float m_LowestDistance;
 
     public List<float> m_Distances = new List<float>();
@@ -28,7 +30,7 @@ public class TurretBehaviour : MonoBehaviour
         UpgradeMenu.SetActive(false);
     }
 
-    void Update()
+    public virtual void Update()
     {
         AttackRadius(transform.position, radius);
 
@@ -115,7 +117,7 @@ public class TurretBehaviour : MonoBehaviour
                     //pathFollow[x] = \
                     //PathFollowing _currentWayPoint = hitCollider[i].gameObject.GetComponent<PathFollowing>();
                     PathFollowing _currentWayPoint = hitCollider[i].gameObject.GetComponent<PathFollowing>();
-                    GameObject _currentObject = _currentWayPoint.gameObject;
+                    m__currentObject = _currentWayPoint.gameObject;
                     if (_currentWayPoint.m_EntireDistance < m_LowestDistance)
                     {
                         m_LowestDistance = _currentWayPoint.m_EntireDistance;

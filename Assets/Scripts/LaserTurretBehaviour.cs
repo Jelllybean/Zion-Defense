@@ -24,7 +24,7 @@ public class LaserTurretBehaviour : TurretBehaviour
         StartCoroutine(FireLasers());
     }
 
-    private void Update()
+    void Update()
     {
         AttackRadius(transform.position, radius);
         //m_BulletEmitter.localEulerAngles = ObjectToTurn.localEulerAngles;
