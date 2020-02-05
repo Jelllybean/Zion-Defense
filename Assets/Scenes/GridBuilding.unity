@@ -1914,7 +1914,6 @@ MonoBehaviour:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
   Table: {fileID: 2067517984}
-  m_TurnRight: 1
 --- !u!114 &83868690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,7 +1930,6 @@ MonoBehaviour:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
   Table: {fileID: 2067517984}
-  m_TurnRight: 1
 --- !u!1001 &88341777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3815,7 +3813,6 @@ MonoBehaviour:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
   Table: {fileID: 2019195081}
-  m_TurnRight: 1
 --- !u!54 &196808429
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7086,9 +7083,6 @@ MonoBehaviour:
   hideHandOnAttach: 1
   hideSkeletonOnAttach: 0
   hideControllerOnAttach: 1
-  snapToGrid: 0
-  placeNewObject: 0
-  newObject: {fileID: 0}
   handAnimationOnPickup: 0
   setRangeOfMotionOnPickup: -1
   useHandObjectAttachmentPoint: 0
@@ -7135,9 +7129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90b15ca3cf69de40bf7101f0e35c6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TriggerAction:
-    actionPath: 
-    needsReinit: 0
   bulletspeed: 500
   bullet: {fileID: 1680295627652998957, guid: 8e1ce18554859724783755640125a6fc, type: 3}
   bullet_Emitter: {fileID: 370831725}
@@ -11355,6 +11346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BigRig: {fileID: 2058079967}
   SmallRig: {fileID: 1569345695}
+  activateButton: []
 --- !u!1001 &508070826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11760,6 +11752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BigRig: {fileID: 215278243}
   SmallRig: {fileID: 471554141}
+  activateButton: []
 --- !u!4 &524684910
 Transform:
   m_ObjectHideFlags: 0
@@ -28218,7 +28211,6 @@ MonoBehaviour:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
   Table: {fileID: 2019195081}
-  m_TurnRight: 1
 --- !u!54 &1210886047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35367,6 +35359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BigRig: {fileID: 2058079967}
   SmallRig: {fileID: 1569345695}
+  activateButton: []
 --- !u!1001 &1448886081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38033,7 +38026,6 @@ MonoBehaviour:
     needsReinit: 0
   useHoverSphere: 1
   hoverSphereTransform: {fileID: 0}
-  outlineObject: {fileID: 0}
   hoverSphereRadius: 0.05
   hoverLayerMask:
     serializedVersion: 2
@@ -38053,7 +38045,6 @@ MonoBehaviour:
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
-  m_Table: {fileID: 0}
 --- !u!114 &1562688077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38204,7 +38195,7 @@ MonoBehaviour:
     needsReinit: 0
   grabGripAction:
     actionPath: /actions/default/in/PickUpGun
-    needsReinit: 0
+    needsReinit: 1
   hapticAction:
     actionPath: /actions/default/out/Haptic
     needsReinit: 0
@@ -38213,7 +38204,6 @@ MonoBehaviour:
     needsReinit: 0
   useHoverSphere: 1
   hoverSphereTransform: {fileID: 4000011160290413}
-  outlineObject: {fileID: 0}
   hoverSphereRadius: 0.075
   hoverLayerMask:
     serializedVersion: 2
@@ -38234,7 +38224,6 @@ MonoBehaviour:
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
-  m_Table: {fileID: 0}
 --- !u!114 &1562724709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38308,7 +38297,7 @@ MonoBehaviour:
     needsReinit: 0
   grabGripAction:
     actionPath: /actions/default/in/PickUpGun
-    needsReinit: 0
+    needsReinit: 1
   hapticAction:
     actionPath: /actions/default/out/Haptic
     needsReinit: 0
@@ -38317,7 +38306,6 @@ MonoBehaviour:
     needsReinit: 0
   useHoverSphere: 1
   hoverSphereTransform: {fileID: 1569497477}
-  outlineObject: {fileID: 0}
   hoverSphereRadius: 0.075
   hoverLayerMask:
     serializedVersion: 2
@@ -38338,7 +38326,6 @@ MonoBehaviour:
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
-  m_Table: {fileID: 0}
 --- !u!124 &1563830057
 Behaviour:
   m_ObjectHideFlags: 0
@@ -44663,6 +44650,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1985773369}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1784905335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5863725774466398864, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_Name
+      value: Normal_Turret (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.058
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0686
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.1718
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863725774466398865, guid: 7b3e171fb39c1844ea3fb97b2346dd37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b3e171fb39c1844ea3fb97b2346dd37, type: 3}
 --- !u!43 &1791021927
 Mesh:
   m_ObjectHideFlags: 0
@@ -46558,9 +46614,6 @@ MonoBehaviour:
   hideHandOnAttach: 0
   hideSkeletonOnAttach: 0
   hideControllerOnAttach: 1
-  snapToGrid: 0
-  placeNewObject: 0
-  newObject: {fileID: 0}
   handAnimationOnPickup: 0
   setRangeOfMotionOnPickup: -1
   useHandObjectAttachmentPoint: 0
@@ -46607,9 +46660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90b15ca3cf69de40bf7101f0e35c6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TriggerAction:
-    actionPath: 
-    needsReinit: 0
   bulletspeed: 500
   bullet: {fileID: 1680295627652998957, guid: 8e1ce18554859724783755640125a6fc, type: 3}
   bullet_Emitter: {fileID: 1370935519}
